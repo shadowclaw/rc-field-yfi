@@ -1,0 +1,169 @@
+  /***************************************/
+ /*ArduPilot 2.5 Header file, good luck!*/
+/***************************************/
+
+//Hardware Configuration
+#define SHIELD_VERSION 1 // Old (red) shield versions is 0, the new (blue) shield version is 1, -1 = no shield
+#define AIRSPEED_SENSOR 1 // (boolean) Do you have an airspeed sensor attached? If not throttle will restricted to altitude error.
+
+// Flight Modes
+// these Flight modes can be changed to either here or directly in events.pde
+// options are MANUAL, STABILIZE, FLY_BY_WIRE, AUTO, RTL, LOITER
+#define POSITION_1 MANUAL 
+#define POSITION_2 AUTO
+#define POSITION_3 AUTO
+
+
+// Airframe settings
+//1-1
+#define GPS_PROTOCOL 2 // 0 = NMEA, 1=SIRF, 2=uBlox, 3 = IMU Choose protocol
+//1-2
+#define REVERSE_ROLL 1 //To reverse servo roll, PUT -1 to invert it!!!
+//1-3
+#define REVERSE_PITCH 1 //To reverse servo pitch, PUT -1 to invert it!!!
+//1-4
+#define REVERSE_THROTTLE 0 // 0 = Normal mode. 1 = Reverse mode... 
+//1-5
+#define INTPUT_VOLTAGE 5200.0 // (Millivolts) voltage your power regulator is feeding your ArduPilot to have an accurate pressure and battery level readings. (you need a multimeter to measure and set this of course)
+//1-6
+#define BATTERY_EVENT 0 // (boolean) 0 = don't read battery, 1 = read battery voltage (only if you have it wired up!)
+//1-7
+#define MIXING_MODE 0 //Servo mixing mode 0 = Normal, 1 = V-tail (v tail not tested yet). 
+
+// IR sensors
+//2-1
+#define ENABLE_Z_SENSOR 1  // 0 = no Z sensor, 1 = use Z sensor (no Z requires field calibration with each flight)
+//2-2
+#define XY_SENSOR_LOCATION 1 //XY Thermopiles Sensor placement
+//Mounted on top: 		0 = cable in front, 1 = cable behind
+//Mounted on botton: 	2 = cable in front, 3 = cable behind
+//2-3
+#define PITCH_TRIM 0 //(Degrees +- 5) allows you to offset bad IR placement
+//2-4
+#define ROLL_TRIM 0 // (Degrees +- 5) allows you to offset bad IR placement
+
+
+// RADIO
+//3-1
+#define SET_RADIO_LIMITS 0 // 0 = no, 1 = set the limits of the Channels with the radio at launch each time
+//3-2
+#define SET_RADIO_TRIMS 0 // 0 = no, 1 = set the trims of the Channels with the radio at launch each time
+//3-3
+#define RADIO_TYPE 0 // 0 = sequential PWM pulses(Fasst, Spektrums), 1 = simultaneous PWM pulses (Corona RP8D1)
+//3-4
+#define CH1_MIN 1220 // (Microseconds) Range of Ailerons/ Rudder
+//3-5
+#define CH1_MAX 2043 // (Microseconds)
+//3-6
+#define CH2_MIN 1041 // (Microseconds) Range of Elevator
+//3-7
+#define CH2_MAX 1765 // (Microseconds)
+//3-8
+#define CH3_TRIM 1015 // (Microseconds) Trims are normally set automatically in setup.
+//3-9
+#define THROTTLE_IN 1 // (boolean) Disables throttle when set to 0
+//3-10
+#define THROTTLE_OUT 1	 // 1 = throttle, 0 = no throttle at all! (good for saving fingers on the bench.)
+
+
+//NAVIGATION: HEADING
+//Note: Some Gains are now variables
+#define HEAD_P .714 //Heading error proportional (same used to move the rudder)... DO not add too much or you will oscillate left and right.  (drunk driver effect)
+//4-1
+#define HEAD_I .095 //heading error integrator. Do not add too much or you will overshoot. 
+//4-2
+#define HEAD_MAX 3500 //(Degrees *100) The maximum output in degrees to control the roll setpoint
+//4-3
+#define HEAD_MIN -3500 //(Degrees *100) The min output in degrees to control the roll setpoint
+//4-4
+#define HEAD_I_MAX 1000 //(Degrees *100) The maximum output in degrees to control the roll setpoint
+//4-5
+#define HEAD_I_MIN -1000 //(Degrees *100) The min output in degrees to control the roll setpoint
+//4-6
+#define XTRACK_GAIN .2 // amount to compensate for crosstrack - use debug mode to find correct value
+//4-7
+#define LOITER_RADIUS 20 // radius in meters of a Loiter
+//4-8
+#define REMEMBER_LAST_WAYPOINT_MODE 1 //If set 1 = will remember the last waypoint even if you restart the autopilot. 0 = Will start from zero everytime you restart the system. 
+//4-9
+#define WP_ALTITUDE_RADIUS 10 // (meters) accuracy needed to find our waypoint in meters
+
+
+//NAVIGATION: ALTITUDE
+//5-1
+#define ALTITUDE_PITCH_P 1.5 //Altitude error proportional, pitch setpoint
+//5-2
+#define ALTITUDE_PITCH_MAX 500 // most the plane will pitch up in degrees to raise altitude
+//5-3
+#define ALTITUDE_PITCH_MIN -1500 // (Degrees *100) most the plane will pitch down in degrees to lower altitude 
+
+
+//NAVIGATION: SPEED GAINS
+//6-1
+#define ALTITUDE_THROTTLE_P 1.33
+//6-2
+#define ALTITUDE_AIRSPEED_MAX 15 //(0-125) Maximum extra speed for gaining altitude
+//6-3
+#define ALTITUDE_AIRSPEED_MIN -15 //(0-125) Maximum reduded speed for loosing altitude
+//6-4
+#define AIRSPEED_TURN_P .5 // (.25 - 1) The amount we scale down our roll when going slow; 1 = no effect
+//6-5
+#define AIRSPEED_MAX_TURN_SPEED 25 // Turn full-on above this airspeed, Hint: set less than or equal to THROTTLE_CRUISE 
+//6-6
+#define AIRSPEED_MIN_TURN_SPEED 12 // Used to limit the effect
+
+
+
+
+//ATTITUDE: ROLL GAINS
+//7-1
+#define ROLL_P .55 // 	START WITH THIS VALUE TO TUNE - overall proportional term determines how much rudder you use to turn.
+//7-2	
+#define ROLL_I .1 //	roll PID integrator
+//7-3
+#define ROLL_Ps .6 //	Controls rate of rudder turn - direct proportional effect; value of 1 = no dampening
+//7-4
+#define ROLL_Is .2 //	Controls rate of rudder turn - speed at which the non proportional effect happens - .2 = 5 seconds
+//7-5
+#define ROLL_MIN -2500 // maximum output of Rudder
+//7-6
+#define ROLL_MAX 2500 // maximum output of Rudder
+
+
+//ATTITUDE: PITCH GAINS
+//8-1
+#define PITCH_P .65 //	Pitch Proportional
+//8-2
+#define PITCH_I .35 //	Pitch integrator
+//8-3
+#define PITCH_COMP .30 //<------Very important, Pitch compensation vs. Roll bank angle. 
+
+
+//ATTITUDE: THROTTLE OUTPUT GAINS
+//9-1
+#define THROTTLE_ABSOLUTE 3 //Absolute
+//9-2
+#define THROTTLE_P .32 //Proportional
+//9-3
+#define THROTTLE_I .04 //Integrator
+//9-4
+#define THROTTLE_I_MAX 50 // (0-125) 50=70% Integrator limit. 
+//9-5
+#define THROTTLE_CRUISE 25 // (0-125) %throttle, or (int)target airspeed for cruising
+//9-6
+#define THROTTLE_MAX 60 // (0-125) 70 = 56% maximum throttle
+
+
+  /*****************/
+ /*Debugging Stuff*/
+/*****************/
+//10-1
+#define DEBUG 0 // 0 = no debugging, will cause plane to enter debugging simulation mode
+//10-2
+#define TURNRATE 65 // (degrees) how fast we turn per second in degrees at full bank
+//10-3
+#define CLIMBRATE_UP 1000 // (meters * 100) how fast we climb in simulator at 90° 
+//10-4
+#define CLIMBRATE_DOWN 3000 // (meters * 100) how fast we climb in simulator at 90° 
+
+

@@ -1,0 +1,4 @@
+http://www.java2s.com/Tutorial/JavaScript/0220__Array/Returnanarrayfromafunction.htm
+http://www.dotnetcurry.com/ShowArticle.aspx?ID=194&AspxAutoDetectCookieSupport=1
+http://www.cs.tut.fi/~jkorpela/HTML3.2/5.32.html
+http://www.quirksmode.org/js/strings.html
