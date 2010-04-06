@@ -1,0 +1,11 @@
+C:\Users\Jordi PRO\Documents\Visual Studio 2008\Projects\ArdupilotConfigTool\ArduPilotConfigTool\obj\Release\ArduPilotConfigTool.exe
+C:\Users\Jordi PRO\Documents\Visual Studio 2008\Projects\ArdupilotConfigTool\ArduPilotConfigTool\obj\Release\ArduPilotConfigTool.pdb
+C:\Users\Jordi PRO\Documents\Visual Studio 2008\Projects\ArdupilotConfigTool\ArduPilotConfigTool\bin\Release\ArduPilotConfigTool.exe
+C:\Users\Jordi PRO\Documents\Visual Studio 2008\Projects\ArdupilotConfigTool\ArduPilotConfigTool\bin\Release\ArduPilotConfigTool.pdb
+C:\Users\Jordi PRO\Documents\Visual Studio 2008\Projects\ArdupilotConfigTool\ArduPilotConfigTool\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Jordi PRO\Documents\Visual Studio 2008\Projects\ArdupilotConfigTool\ArduPilotConfigTool\obj\Release\ArduPilotConfigTool.Form1.resources
+C:\Users\Jordi PRO\Documents\Visual Studio 2008\Projects\ArdupilotConfigTool\ArduPilotConfigTool\obj\Release\ArduPilotConfigTool.options_form.resources
+C:\Users\Jordi PRO\Documents\Visual Studio 2008\Projects\ArdupilotConfigTool\ArduPilotConfigTool\obj\Release\ArduPilotConfigTool.Properties.Resources.resources
+C:\Users\Jordi PRO\Documents\Visual Studio 2008\Projects\ArdupilotConfigTool\ArduPilotConfigTool\obj\Release\ArduPilotConfigTool.csproj.GenerateResource.Cache
+C:\Users\Jordi PRO\Desktop\desmare Confiq\confiqtool\obj\Release\ArduPilotConfigTool.exe
+C:\Users\Jordi PRO\Desktop\desmare Confiq\confiqtool\obj\Release\ArduPilotConfigTool.pdb

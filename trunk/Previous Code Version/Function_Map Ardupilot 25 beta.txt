@@ -1,0 +1,136 @@
+Ardupilot 2.5 Functions by Tab
+
+Ardupilot 25
+	void setup()
+	void loop()
+	
+GPS_IMU
+	void init_gps()
+	void fast_init_gps()
+	void wait_for_gps_fix()
+	void decode_gps()
+	void imu_join_data()
+	void checksum(byte data)
+	void wait_for_data(byte many)
+	int32_t join_4_bytes(byte buffer[])
+	
+GPS_UBLOX
+	void init_gps()
+	void fast_init_gps()
+	void decode_gps()
+	void gps_join_data()
+	int32_t join_4_bytes(byte buffer[])
+	void checksum(byte data)
+	void wait_for_gps_fix()
+	
+attitude
+	void stabilize_ap_mix()
+	void stabilize_ap()
+	void stabilize()
+	
+controlSwitch
+	void read_control_switch()
+	void reset_control_switch()
+	byte read_switch()
+	void init_control_switch()
+	
+control_attitude
+	float calc_attitude_roll(float error)
+	float smooth_attitude_roll(float error)
+	float calc_attitude_pitch(float error)
+	int calc_attitude_throttle(float error)
+	
+control_navigation
+	float calc_nav_roll(float error)
+	long calc_nav_pitch(long error)
+	float reset_I(float value)
+	
+events
+	void failsafe_event()
+	void switch_event(byte switchposition)
+	void waypoint_event(byte event)
+	void gps_event()
+	void mainloop_event()
+	void low_battery_event()
+	
+groundStation
+	void readcommands()
+	void parsecommand(char *buffer)
+	
+navigation
+	void navigate()
+	int get_altitude_above_home()
+	long getdistance(struct location *loc1, struct location *loc2)
+	long get_alt_distance(struct location *loc1, struct location *loc2)
+	float getarea(struct location *loc1, struct location *loc2)
+	long get_bearing2(struct location *loc1, struct location *loc2)
+	long get_bearing(struct location *loc1, struct location *loc2))
+	
+print
+	void print_launch_params()
+	void print_radio()
+	void print_current_waypoint()
+	void print_control_mode()
+	void print_position()
+	void print_attitude()
+	void print_new_wp_info()
+	void print_waypoints(byte wp_tot)
+	void print_remzibi()
+	void print_remzibi_debug()
+	void print_data_emulator()
+	
+radio
+	void read_radio()
+	ISR(PCINT2_vect)
+	ISR(PCINT0_vect)
+	void throttle_failsafe()
+	void init_radio()
+	void setup_throttle_trims()
+	void fast_init_radio()
+	
+sensors
+	void init_analogs()
+	void read_xy_analogs()
+	void read_analogs()
+	long getroll()
+	long getpitch()
+	long x_axis()
+	long y_axis()
+	void zero_airspeed()
+	
+servos
+	void demo_servos()
+	void set_servo_mux(boolean mode)
+	void set_degrees()
+	void update_throttle()
+	ISR(TIMER1_CAPT_vect)
+	ISR(TIMER2_COMPA_vect)
+	void init_pwm()
+	
+system
+	void init_ardupilot()
+	void savelaunchparams()
+	void restorelaunchparams()
+	void setgpsmux()
+	void setcommandmux()
+	void set_mode(byte mode)
+	void set_failsafe(boolean mode)
+	void set_max_altitude_speed()
+	void read_eeprom_config()
+	
+testing
+	void read_xy_analogs_test()
+	void read_control_switch_test()
+	void readgps_test()
+	void init_test_location()
+	
+waypoints
+	void save_wp_index()
+	void return_to_launch()
+	void reached_waypoint()
+	void load_waypoint()
+	void initialize_home()
+	void read_points()
+	void reset_location()
+	void precalc_waypoint_distances()
+	void reset_crosstrack()

@@ -1,0 +1,78 @@
+Ardupilot 2.4 Functions by Tab
+
+Ardupilot_Easystar_V24
+	void setup()
+	void loop()
+	
+Amain
+	void navigation()
+	void stabilization()
+	
+Control
+	int calc_roll(float error, float dt)
+	int altitude_error(int pid_set_point, int pid_current_point)
+	int heading_error(int pid_set_point, int pid_current_point)
+	byte pid_throttle(int pid_set_point, int pid_current_point, int dt)
+	int pid_roll(int pid_error, byte absolute, int dt)
+	int pid_error(int pid_set_point, int pid_current_point)
+	int pid_pitch(int pid_error, int dt)
+	
+GPS_UBLOX
+	void init_gps()
+	void fast_init_gps()
+	void decode_gps()
+	void checksum(byte data)
+	void wait_for_data(byte many)
+	
+Navigation
+	long get_relative_altitude()
+	unsigned int hold_current_altitude()
+	void update_distance()
+	int calc_bearing(float flat1, float flon1, float flat2, float flon2)
+	unsigned int calc_dist(float flat1, float flon1, float flat2, float flon2)
+	
+Sensors
+	void analog_init()
+	void analog_reference(uint8_t mode)
+	ISR(ADC_vect)
+	void catch_analogs()
+	void zero_airspeed()
+	int airspeed()
+	int y_axis()
+	int x_axis()
+	int get_roll()
+	int get_pitch()
+	void sensor_z()
+	
+Servos
+	void init_servos()
+	ISR(TIMER1_CAPT_vect)
+	ISR(TIMER2_COMPA_vect)
+	ISR(TIMER2_COMPB_vect)
+	void pulse_servos(int roll, int pitch)
+	void pulse_servo_0(long porcent)
+	void pulse_servo_1(long angle)
+	void pulse_servo_2(long angle)
+	void test_servos()
+	int read_ch1()
+	int read_ch2()
+	
+System
+	void init_ardupilot()
+	void load_settings()
+	void save_launch_parameters_flagged()
+	void restore_launch_parameters()
+	byte tx_switch_status()
+	float reset(float value)
+	void maxis()
+	void print_data()
+	
+Waypoints
+	void waypoint_switcherr(int distance, byte radius)
+	void set_new_waypoint(int current_waypoint)
+	
+xDebug
+	void print_waypoints()
+	void test_throttle()
+	void calibrate_servos()
+	void print_eeprom()
