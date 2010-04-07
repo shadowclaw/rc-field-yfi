@@ -1,0 +1,2268 @@
+
+ap_ppm_encoder.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000014  00800100  00000adc  00000b90  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000adc  00000000  00000000  000000b4  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000001c  00800114  00800114  00000ba4  2**0
+                  ALLOC
+  3 .eeprom       00000035  00810000  00810000  00000ba4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  4 .debug_aranges 00000020  00000000  00000000  00000bd9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_pubnames 0000022c  00000000  00000000  00000bf9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000005d8  00000000  00000000  00000e25  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000153  00000000  00000000  000013fd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000098d  00000000  00000000  00001550  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000e0  00000000  00000000  00001ee0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003e1  00000000  00000000  00001fc0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000377  00000000  00000000  000023a1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000018  00000000  00000000  00002718  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 a7 01 	jmp	0x34e	; 0x34e <__vector_5>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 7c 01 	jmp	0x2f8	; 0x2f8 <__vector_12>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 6b 01 	jmp	0x2d6	; 0x2d6 <__vector_16>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	ec ed       	ldi	r30, 0xDC	; 220
+  7c:	fa e0       	ldi	r31, 0x0A	; 10
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <.do_copy_data_start>
+
+00000080 <.do_copy_data_loop>:
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+
+00000084 <.do_copy_data_start>:
+  84:	a4 31       	cpi	r26, 0x14	; 20
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <.do_copy_data_loop>
+
+0000008a <__do_clear_bss>:
+  8a:	11 e0       	ldi	r17, 0x01	; 1
+  8c:	a4 e1       	ldi	r26, 0x14	; 20
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a0 33       	cpi	r26, 0x30	; 48
+  96:	b1 07       	cpc	r27, r17
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 12 04 	call	0x824	; 0x824 <main>
+  9e:	0c 94 6c 05 	jmp	0xad8	; 0xad8 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <detect_connected_channels>:
+
+/*22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222*/
+/*33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333*/
+
+unsigned char detect_connected_channels(void)
+{
+  a6:	cf 93       	push	r28
+  a8:	df 93       	push	r29
+
+/* 
+There must be no error in which channels are connected to the encoder
+because this will have devastating effects later on.
+*/
+wdt_reset(); 
+  aa:	a8 95       	wdr
+RESET_START_TIMER0();
+  ac:	15 bc       	out	0x25, r1	; 37
+  ae:	a8 9a       	sbi	0x15, 0	; 21
+  b0:	16 bc       	out	0x26, r1	; 38
+  b2:	10 92 1d 01 	sts	0x011D, r1
+  b6:	82 e0       	ldi	r24, 0x02	; 2
+  b8:	85 bd       	out	0x25, r24	; 37
+  ba:	f0 91 19 01 	lds	r31, 0x0119
+  be:	a0 e0       	ldi	r26, 0x00	; 0
+  c0:	20 e0       	ldi	r18, 0x00	; 0
+  c2:	30 e0       	ldi	r19, 0x00	; 0
+
+      for(channel=0; channel < RC_SERVO_INPUT_CHANNELS; channel++)
+  c4:	c1 e0       	ldi	r28, 0x01	; 1
+  c6:	d0 e0       	ldi	r29, 0x00	; 0
+  c8:	29 c0       	rjmp	.+82     	; 0x11c <detect_connected_channels+0x76>
+        {
+           servo_connected = 0;
+           for(y=0; y<5; y++)
+             {
+                wdt_reset(); 
+  ca:	a8 95       	wdr
+                RESET_TIMER0();
+  cc:	a8 9a       	sbi	0x15, 0	; 21
+  ce:	16 bc       	out	0x26, r1	; 38
+  d0:	10 92 1d 01 	sts	0x011D, r1
+  d4:	e0 e0       	ldi	r30, 0x00	; 0
+  d6:	11 c0       	rjmp	.+34     	; 0xfa <detect_connected_channels+0x54>
+                x=0;
+                while(timer0.timer0[1] <= RC_MAX_TIMEOUT_VAL )
+                    {
+                      if(RC_SERVO_PORT_PIN_REG & (1<<channel)) { x=timer0.timer0[1]; }
+  d8:	89 b1       	in	r24, 0x09	; 9
+  da:	90 e0       	ldi	r25, 0x00	; 0
+  dc:	86 23       	and	r24, r22
+  de:	97 23       	and	r25, r23
+  e0:	89 2b       	or	r24, r25
+  e2:	11 f0       	breq	.+4      	; 0xe8 <detect_connected_channels+0x42>
+  e4:	e0 91 1d 01 	lds	r30, 0x011D
+                      if( (timer0.timer0[1] - x) >= RC_PULSE_TIMEOUT_VAL ){ servo_connected++; break; }
+  e8:	80 91 1d 01 	lds	r24, 0x011D
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	8e 1b       	sub	r24, r30
+  f0:	91 09       	sbc	r25, r1
+  f2:	09 97       	sbiw	r24, 0x09	; 9
+  f4:	10 f0       	brcs	.+4      	; 0xfa <detect_connected_channels+0x54>
+  f6:	5f 5f       	subi	r21, 0xFF	; 255
+  f8:	04 c0       	rjmp	.+8      	; 0x102 <detect_connected_channels+0x5c>
+           for(y=0; y<5; y++)
+             {
+                wdt_reset(); 
+                RESET_TIMER0();
+                x=0;
+                while(timer0.timer0[1] <= RC_MAX_TIMEOUT_VAL )
+  fa:	80 91 1d 01 	lds	r24, 0x011D
+  fe:	87 37       	cpi	r24, 0x77	; 119
+ 100:	58 f3       	brcs	.-42     	; 0xd8 <detect_connected_channels+0x32>
+                    {
+                      if(RC_SERVO_PORT_PIN_REG & (1<<channel)) { x=timer0.timer0[1]; }
+                      if( (timer0.timer0[1] - x) >= RC_PULSE_TIMEOUT_VAL ){ servo_connected++; break; }
+                    }
+                if(servo_connected >= 3){ channel_mask |= (1<<channel); connected_channels++; break; } 
+ 102:	53 30       	cpi	r21, 0x03	; 3
+ 104:	18 f0       	brcs	.+6      	; 0x10c <detect_connected_channels+0x66>
+ 106:	f6 2b       	or	r31, r22
+ 108:	af 5f       	subi	r26, 0xFF	; 255
+ 10a:	03 c0       	rjmp	.+6      	; 0x112 <detect_connected_channels+0x6c>
+RESET_START_TIMER0();
+
+      for(channel=0; channel < RC_SERVO_INPUT_CHANNELS; channel++)
+        {
+           servo_connected = 0;
+           for(y=0; y<5; y++)
+ 10c:	4f 5f       	subi	r20, 0xFF	; 255
+ 10e:	45 30       	cpi	r20, 0x05	; 5
+ 110:	e1 f6       	brne	.-72     	; 0xca <detect_connected_channels+0x24>
+ 112:	2f 5f       	subi	r18, 0xFF	; 255
+ 114:	3f 4f       	sbci	r19, 0xFF	; 255
+because this will have devastating effects later on.
+*/
+wdt_reset(); 
+RESET_START_TIMER0();
+
+      for(channel=0; channel < RC_SERVO_INPUT_CHANNELS; channel++)
+ 116:	28 30       	cpi	r18, 0x08	; 8
+ 118:	31 05       	cpc	r19, r1
+ 11a:	51 f0       	breq	.+20     	; 0x130 <detect_connected_channels+0x8a>
+ 11c:	be 01       	movw	r22, r28
+ 11e:	02 2e       	mov	r0, r18
+ 120:	02 c0       	rjmp	.+4      	; 0x126 <detect_connected_channels+0x80>
+ 122:	66 0f       	add	r22, r22
+ 124:	77 1f       	adc	r23, r23
+ 126:	0a 94       	dec	r0
+ 128:	e2 f7       	brpl	.-8      	; 0x122 <detect_connected_channels+0x7c>
+ 12a:	50 e0       	ldi	r21, 0x00	; 0
+ 12c:	40 e0       	ldi	r20, 0x00	; 0
+ 12e:	cd cf       	rjmp	.-102    	; 0xca <detect_connected_channels+0x24>
+ 130:	f0 93 19 01 	sts	0x0119, r31
+     }
+  }
+#endif
+
+return(connected_channels);
+}
+ 134:	8a 2f       	mov	r24, r26
+ 136:	df 91       	pop	r29
+ 138:	cf 91       	pop	r28
+ 13a:	08 95       	ret
+
+0000013c <get_channel_pw>:
+{
+
+unsigned int  pw = 0;
+unsigned char pw_measurement_started = 0;
+
+wdt_reset();
+ 13c:	a8 95       	wdr
+/* The servo input pins are already configured as inputs with pullup resistors. */ 
+// First we must disable the pin interrupt. 
+RC_PIN_INT_EN_REG &= (~(1<<RC_PIN_INT_EN_BIT));
+ 13e:	90 91 68 00 	lds	r25, 0x0068
+ 142:	9b 7f       	andi	r25, 0xFB	; 251
+ 144:	90 93 68 00 	sts	0x0068, r25
+//Now we must load the pin interrupt mask register.
+RC_PIN_INT_MASK_REG = (1<<pin);
+ 148:	21 e0       	ldi	r18, 0x01	; 1
+ 14a:	30 e0       	ldi	r19, 0x00	; 0
+ 14c:	02 c0       	rjmp	.+4      	; 0x152 <get_channel_pw+0x16>
+ 14e:	22 0f       	add	r18, r18
+ 150:	33 1f       	adc	r19, r19
+ 152:	8a 95       	dec	r24
+ 154:	e2 f7       	brpl	.-8      	; 0x14e <get_channel_pw+0x12>
+ 156:	20 93 6d 00 	sts	0x006D, r18
+//Clear any pin interrupt flag set. 
+RC_PIN_INT_FLAG_REG |= (1<<RC_PIN_INT_FLAG_BIT);
+ 15a:	da 9a       	sbi	0x1b, 2	; 27
+// Clear the pin interrupt ISR detection variable
+pin_interrupt_detected = 0;
+ 15c:	10 92 14 01 	sts	0x0114, r1
+// Finally we can enable the pin interrupt again. 
+RC_PIN_INT_EN_REG |= (1<<RC_PIN_INT_EN_BIT); 
+ 160:	80 91 68 00 	lds	r24, 0x0068
+ 164:	84 60       	ori	r24, 0x04	; 4
+ 166:	80 93 68 00 	sts	0x0068, r24
+// Set and start timer1
+RESET_START_TIMER0();
+ 16a:	15 bc       	out	0x25, r1	; 37
+ 16c:	a8 9a       	sbi	0x15, 0	; 21
+ 16e:	16 bc       	out	0x26, r1	; 38
+ 170:	10 92 1d 01 	sts	0x011D, r1
+ 174:	82 e0       	ldi	r24, 0x02	; 2
+ 176:	85 bd       	out	0x25, r24	; 37
+ 178:	40 e0       	ldi	r20, 0x00	; 0
+ 17a:	50 e0       	ldi	r21, 0x00	; 0
+ 17c:	60 e0       	ldi	r22, 0x00	; 0
+
+while(1)
+    {  
+       /* Wait until the pin change state. */
+       do{  
+           if( timer0.timer0[1] >=  RC_MAX_TIMEOUT_VAL )
+ 17e:	80 91 1d 01 	lds	r24, 0x011D
+ 182:	86 37       	cpi	r24, 0x76	; 118
+ 184:	18 f0       	brcs	.+6      	; 0x18c <get_channel_pw+0x50>
+ 186:	20 e0       	ldi	r18, 0x00	; 0
+ 188:	30 e0       	ldi	r19, 0x00	; 0
+ 18a:	1f c0       	rjmp	.+62     	; 0x1ca <get_channel_pw+0x8e>
+            { 
+              return(0);
+            }
+                 
+         }while( pin_interrupt_detected == 0 );
+ 18c:	80 91 14 01 	lds	r24, 0x0114
+ 190:	88 23       	and	r24, r24
+ 192:	a9 f3       	breq	.-22     	; 0x17e <get_channel_pw+0x42>
+         pin_interrupt_detected = 0; 
+ 194:	10 92 14 01 	sts	0x0114, r1
+         if( RC_SERVO_PORT_PIN_REG & (1<<pin) ) /* if the pin is high then give it a time stamp */ 
+ 198:	89 b1       	in	r24, 0x09	; 9
+ 19a:	90 e0       	ldi	r25, 0x00	; 0
+ 19c:	82 23       	and	r24, r18
+ 19e:	93 23       	and	r25, r19
+ 1a0:	89 2b       	or	r24, r25
+ 1a2:	31 f0       	breq	.+12     	; 0x1b0 <get_channel_pw+0x74>
+          {
+             pw = isr_timer0_16;
+ 1a4:	40 91 16 01 	lds	r20, 0x0116
+ 1a8:	50 91 17 01 	lds	r21, 0x0117
+ 1ac:	61 e0       	ldi	r22, 0x01	; 1
+ 1ae:	e7 cf       	rjmp	.-50     	; 0x17e <get_channel_pw+0x42>
+             pw_measurement_started = 1;        /* signal that this channel got it's timer stamp.*/
+                                       
+          }else{ 
+                  // If the pin is low and it already has a time stamp then we are done.
+                  if( pw_measurement_started )
+ 1b0:	66 23       	and	r22, r22
+ 1b2:	29 f3       	breq	.-54     	; 0x17e <get_channel_pw+0x42>
+                   {
+                      pw = isr_timer0_16 - pw;
+ 1b4:	20 91 16 01 	lds	r18, 0x0116
+ 1b8:	30 91 17 01 	lds	r19, 0x0117
+ 1bc:	24 1b       	sub	r18, r20
+ 1be:	35 0b       	sbc	r19, r21
+                   }
+               }
+    }  
+
+/*Stop the timer */
+STOP_TIMER0(); 
+ 1c0:	15 bc       	out	0x25, r1	; 37
+RESET_TIMER0();
+ 1c2:	a8 9a       	sbi	0x15, 0	; 21
+ 1c4:	16 bc       	out	0x26, r1	; 38
+ 1c6:	10 92 1d 01 	sts	0x011D, r1
+   
+return((unsigned int)pw);   
+}  
+ 1ca:	c9 01       	movw	r24, r18
+ 1cc:	08 95       	ret
+
+000001ce <wait_for_rx>:
+}
+
+#else
+
+void wait_for_rx(void)
+{
+ 1ce:	0f 93       	push	r16
+ 1d0:	1f 93       	push	r17
+unsigned int pw=0;
+unsigned char x = 0;
+unsigned char servo_connected = 0;
+unsigned char channel = 0;
+
+RESET_START_TIMER0();
+ 1d2:	15 bc       	out	0x25, r1	; 37
+ 1d4:	a8 9a       	sbi	0x15, 0	; 21
+ 1d6:	16 bc       	out	0x26, r1	; 38
+ 1d8:	10 92 1d 01 	sts	0x011D, r1
+ 1dc:	82 e0       	ldi	r24, 0x02	; 2
+ 1de:	85 bd       	out	0x25, r24	; 37
+ 1e0:	00 e0       	ldi	r16, 0x00	; 0
+do{
+    for(channel=0; channel < RC_SERVO_INPUT_CHANNELS; channel++)
+      {
+        wdt_reset(); 
+        RESET_TIMER0();
+ 1e2:	61 e0       	ldi	r22, 0x01	; 1
+ 1e4:	70 e0       	ldi	r23, 0x00	; 0
+ 1e6:	24 c0       	rjmp	.+72     	; 0x230 <wait_for_rx+0x62>
+
+RESET_START_TIMER0();
+do{
+    for(channel=0; channel < RC_SERVO_INPUT_CHANNELS; channel++)
+      {
+        wdt_reset(); 
+ 1e8:	a8 95       	wdr
+        RESET_TIMER0();
+ 1ea:	a8 9a       	sbi	0x15, 0	; 21
+ 1ec:	16 bc       	out	0x26, r1	; 38
+ 1ee:	10 92 1d 01 	sts	0x011D, r1
+ 1f2:	9b 01       	movw	r18, r22
+ 1f4:	00 2e       	mov	r0, r16
+ 1f6:	02 c0       	rjmp	.+4      	; 0x1fc <wait_for_rx+0x2e>
+ 1f8:	22 0f       	add	r18, r18
+ 1fa:	33 1f       	adc	r19, r19
+ 1fc:	0a 94       	dec	r0
+ 1fe:	e2 f7       	brpl	.-8      	; 0x1f8 <wait_for_rx+0x2a>
+ 200:	40 e0       	ldi	r20, 0x00	; 0
+ 202:	0f c0       	rjmp	.+30     	; 0x222 <wait_for_rx+0x54>
+        servo_connected = 0;
+        x=0;
+        while(timer0.timer0[1] <= RC_MAX_TIMEOUT_VAL )
+            {
+              if(RC_SERVO_PORT_PIN_REG & (1<<channel)) { x=timer0.timer0[1]; }
+ 204:	89 b1       	in	r24, 0x09	; 9
+ 206:	90 e0       	ldi	r25, 0x00	; 0
+ 208:	82 23       	and	r24, r18
+ 20a:	93 23       	and	r25, r19
+ 20c:	89 2b       	or	r24, r25
+ 20e:	11 f0       	breq	.+4      	; 0x214 <wait_for_rx+0x46>
+ 210:	40 91 1d 01 	lds	r20, 0x011D
+              if( (timer0.timer0[1] - x) >= RC_PULSE_TIMEOUT_VAL ){ servo_connected = 1; break; }
+ 214:	80 91 1d 01 	lds	r24, 0x011D
+ 218:	90 e0       	ldi	r25, 0x00	; 0
+ 21a:	84 1b       	sub	r24, r20
+ 21c:	91 09       	sbc	r25, r1
+ 21e:	09 97       	sbiw	r24, 0x09	; 9
+ 220:	50 f4       	brcc	.+20     	; 0x236 <wait_for_rx+0x68>
+      {
+        wdt_reset(); 
+        RESET_TIMER0();
+        servo_connected = 0;
+        x=0;
+        while(timer0.timer0[1] <= RC_MAX_TIMEOUT_VAL )
+ 222:	80 91 1d 01 	lds	r24, 0x011D
+ 226:	87 37       	cpi	r24, 0x77	; 119
+ 228:	68 f3       	brcs	.-38     	; 0x204 <wait_for_rx+0x36>
+ 22a:	12 c0       	rjmp	.+36     	; 0x250 <wait_for_rx+0x82>
+ 22c:	00 e0       	ldi	r16, 0x00	; 0
+ 22e:	dc cf       	rjmp	.-72     	; 0x1e8 <wait_for_rx+0x1a>
+unsigned char servo_connected = 0;
+unsigned char channel = 0;
+
+RESET_START_TIMER0();
+do{
+    for(channel=0; channel < RC_SERVO_INPUT_CHANNELS; channel++)
+ 230:	08 30       	cpi	r16, 0x08	; 8
+ 232:	d0 f2       	brcs	.-76     	; 0x1e8 <wait_for_rx+0x1a>
+ 234:	fb cf       	rjmp	.-10     	; 0x22c <wait_for_rx+0x5e>
+ 236:	10 e0       	ldi	r17, 0x00	; 0
+
+//Now test the found channel for a proper servo pulse.
+x = 0;
+while(1)
+    {
+       pw=get_channel_pw(channel);
+ 238:	80 2f       	mov	r24, r16
+ 23a:	0e 94 9e 00 	call	0x13c	; 0x13c <get_channel_pw>
+       if( (pw > RC_SERVO_MIN_PW_VAL) && (pw < RC_SERVO_MAX_PW_VAL) ) { x++; }else{ x=0; }
+ 23e:	81 52       	subi	r24, 0x21	; 33
+ 240:	93 40       	sbci	r25, 0x03	; 3
+ 242:	87 57       	subi	r24, 0x77	; 119
+ 244:	95 40       	sbci	r25, 0x05	; 5
+ 246:	b8 f7       	brcc	.-18     	; 0x236 <wait_for_rx+0x68>
+ 248:	1f 5f       	subi	r17, 0xFF	; 255
+       if(x >= 3) { break; }
+ 24a:	13 30       	cpi	r17, 0x03	; 3
+ 24c:	a8 f3       	brcs	.-22     	; 0x238 <wait_for_rx+0x6a>
+ 24e:	02 c0       	rjmp	.+4      	; 0x254 <wait_for_rx+0x86>
+unsigned char servo_connected = 0;
+unsigned char channel = 0;
+
+RESET_START_TIMER0();
+do{
+    for(channel=0; channel < RC_SERVO_INPUT_CHANNELS; channel++)
+ 250:	0f 5f       	subi	r16, 0xFF	; 255
+ 252:	ee cf       	rjmp	.-36     	; 0x230 <wait_for_rx+0x62>
+       if( (pw > RC_SERVO_MIN_PW_VAL) && (pw < RC_SERVO_MAX_PW_VAL) ) { x++; }else{ x=0; }
+       if(x >= 3) { break; }
+    }
+
+return;
+}
+ 254:	1f 91       	pop	r17
+ 256:	0f 91       	pop	r16
+ 258:	08 95       	ret
+
+0000025a <load_failsafe_values>:
+/*77777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777*/
+/*88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888*/
+
+void load_failsafe_values(void)
+{
+wdt_reset();
+ 25a:	a8 95       	wdr
+isr_channel_pw[0] = RC_FS_CH_1_TIMER_VAL;
+ 25c:	8c ed       	ldi	r24, 0xDC	; 220
+ 25e:	95 e0       	ldi	r25, 0x05	; 5
+ 260:	90 93 1f 01 	sts	0x011F, r25
+ 264:	80 93 1e 01 	sts	0x011E, r24
+#if   RC_PPM_GEN_CHANNELS >= 2
+isr_channel_pw[1] = RC_FS_CH_2_TIMER_VAL;
+ 268:	90 93 21 01 	sts	0x0121, r25
+ 26c:	80 93 20 01 	sts	0x0120, r24
+#endif
+#if RC_PPM_GEN_CHANNELS >= 3
+isr_channel_pw[2] = RC_FS_CH_3_TIMER_VAL;
+ 270:	28 ee       	ldi	r18, 0xE8	; 232
+ 272:	33 e0       	ldi	r19, 0x03	; 3
+ 274:	30 93 23 01 	sts	0x0123, r19
+ 278:	20 93 22 01 	sts	0x0122, r18
+#endif
+#if RC_PPM_GEN_CHANNELS >= 4
+isr_channel_pw[3] = RC_FS_CH_4_TIMER_VAL;
+ 27c:	90 93 25 01 	sts	0x0125, r25
+ 280:	80 93 24 01 	sts	0x0124, r24
+#endif
+#if RC_PPM_GEN_CHANNELS >= 5
+isr_channel_pw[4] = RC_FS_CH_5_TIMER_VAL;
+ 284:	30 93 27 01 	sts	0x0127, r19
+ 288:	20 93 26 01 	sts	0x0126, r18
+#endif
+#if RC_PPM_GEN_CHANNELS >= 6
+isr_channel_pw[5] = RC_FS_CH_6_TIMER_VAL;
+ 28c:	30 93 29 01 	sts	0x0129, r19
+ 290:	20 93 28 01 	sts	0x0128, r18
+#endif
+#if RC_PPM_GEN_CHANNELS >= 7
+isr_channel_pw[6] = RC_FS_CH_7_TIMER_VAL;
+ 294:	30 93 2b 01 	sts	0x012B, r19
+ 298:	20 93 2a 01 	sts	0x012A, r18
+#endif
+#if RC_PPM_GEN_CHANNELS >= 8
+isr_channel_pw[7] = RC_FS_CH_8_TIMER_VAL;
+ 29c:	30 93 2d 01 	sts	0x012D, r19
+ 2a0:	20 93 2c 01 	sts	0x012C, r18
+#endif
+#if RC_PPM_GEN_CHANNELS >= 9
+isr_channel_pw[8] = RC_FS_CH_8_TIMER_VAL;
+#endif
+isr_channel_pw[RC_PPM_GEN_CHANNELS] = RC_RESET_PW_TIMER_VAL;
+ 2a4:	8c ee       	ldi	r24, 0xEC	; 236
+ 2a6:	9c e2       	ldi	r25, 0x2C	; 44
+ 2a8:	90 93 2f 01 	sts	0x012F, r25
+ 2ac:	80 93 2e 01 	sts	0x012E, r24
+
+
+return;
+} 
+ 2b0:	08 95       	ret
+
+000002b2 <mux_control>:
+/*12121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212*/
+
+
+void mux_control(void)
+{
+long PULSE_WIDTH = isr_channel_pw[RC_MUX_CHANNEL-1];
+ 2b2:	80 91 2c 01 	lds	r24, 0x012C
+ 2b6:	90 91 2d 01 	lds	r25, 0x012D
+
+#if RC_MUX_REVERSE == 0
+
+	if((PULSE_WIDTH>RC_MUX_MIN)&&(PULSE_WIDTH<RC_MUX_MAX))
+ 2ba:	a0 e0       	ldi	r26, 0x00	; 0
+ 2bc:	b0 e0       	ldi	r27, 0x00	; 0
+ 2be:	01 97       	sbiw	r24, 0x01	; 1
+ 2c0:	a1 09       	sbc	r26, r1
+ 2c2:	b1 09       	sbc	r27, r1
+ 2c4:	81 5e       	subi	r24, 0xE1	; 225
+ 2c6:	94 40       	sbci	r25, 0x04	; 4
+ 2c8:	a0 40       	sbci	r26, 0x00	; 0
+ 2ca:	b0 40       	sbci	r27, 0x00	; 0
+ 2cc:	10 f4       	brcc	.+4      	; 0x2d2 <mux_control+0x20>
+	{
+		MUX_ON();
+ 2ce:	29 9a       	sbi	0x05, 1	; 5
+ 2d0:	08 95       	ret
+	}
+	else
+	{
+		MUX_OFF();
+ 2d2:	29 98       	cbi	0x05, 1	; 5
+ 2d4:	08 95       	ret
+
+000002d6 <__vector_16>:
+/*                                   INTERRUPT SERVICE ROUTINES                                         */
+/********************************************************************************************************/
+
+//ISR(TIMER0_OVF_vect, ISR_NAKED)
+ISR(TIMER0_OVF_vect)
+{
+ 2d6:	1f 92       	push	r1
+ 2d8:	0f 92       	push	r0
+ 2da:	0f b6       	in	r0, 0x3f	; 63
+ 2dc:	0f 92       	push	r0
+ 2de:	11 24       	eor	r1, r1
+ 2e0:	8f 93       	push	r24
+timer0.timer0[1]++;
+ 2e2:	80 91 1d 01 	lds	r24, 0x011D
+ 2e6:	8f 5f       	subi	r24, 0xFF	; 255
+ 2e8:	80 93 1d 01 	sts	0x011D, r24
+
+return;
+}  
+ 2ec:	8f 91       	pop	r24
+ 2ee:	0f 90       	pop	r0
+ 2f0:	0f be       	out	0x3f, r0	; 63
+ 2f2:	0f 90       	pop	r0
+ 2f4:	1f 90       	pop	r1
+ 2f6:	18 95       	reti
+
+000002f8 <__vector_12>:
+modifying their buffers and not the actual registers.
+Both actual registers are updated when the timer reaches the OCR1A (TOP) value automatically.
+This way the OCR1B interrupt can be delayed as needed without any loss of timing accuracy.
+*/
+ISR(TIMER1_COMPB_vect)
+{
+ 2f8:	1f 92       	push	r1
+ 2fa:	0f 92       	push	r0
+ 2fc:	0f b6       	in	r0, 0x3f	; 63
+ 2fe:	0f 92       	push	r0
+ 300:	11 24       	eor	r1, r1
+ 302:	8f 93       	push	r24
+ 304:	9f 93       	push	r25
+ 306:	ef 93       	push	r30
+ 308:	ff 93       	push	r31
+asm("sei");
+ 30a:	78 94       	sei
+      } 
+
+#endif
+#if RC_CONSTANT_PPM_FRAME_TIME == 0
+
+isr_channel_number++;
+ 30c:	80 91 15 01 	lds	r24, 0x0115
+ 310:	8f 5f       	subi	r24, 0xFF	; 255
+ 312:	80 93 15 01 	sts	0x0115, r24
+if( isr_channel_number >= (RC_PPM_GEN_CHANNELS + 1) ) {isr_channel_number = 0; }
+ 316:	80 91 15 01 	lds	r24, 0x0115
+ 31a:	89 30       	cpi	r24, 0x09	; 9
+ 31c:	10 f0       	brcs	.+4      	; 0x322 <__vector_12+0x2a>
+ 31e:	10 92 15 01 	sts	0x0115, r1
+ RC_TIMER1_COMP1_REG = isr_channel_pw[isr_channel_number];
+ 322:	e0 91 15 01 	lds	r30, 0x0115
+ 326:	f0 e0       	ldi	r31, 0x00	; 0
+ 328:	ee 0f       	add	r30, r30
+ 32a:	ff 1f       	adc	r31, r31
+ 32c:	e2 5e       	subi	r30, 0xE2	; 226
+ 32e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 330:	80 81       	ld	r24, Z
+ 332:	91 81       	ldd	r25, Z+1	; 0x01
+ 334:	90 93 89 00 	sts	0x0089, r25
+ 338:	80 93 88 00 	sts	0x0088, r24
+
+#endif
+
+return;
+}
+ 33c:	ff 91       	pop	r31
+ 33e:	ef 91       	pop	r30
+ 340:	9f 91       	pop	r25
+ 342:	8f 91       	pop	r24
+ 344:	0f 90       	pop	r0
+ 346:	0f be       	out	0x3f, r0	; 63
+ 348:	0f 90       	pop	r0
+ 34a:	1f 90       	pop	r1
+ 34c:	18 95       	reti
+
+0000034e <__vector_5>:
+
+/********************************************************************************************************/
+
+ISR(PCINT2_vect)
+{                       
+ 34e:	1f 92       	push	r1
+ 350:	0f 92       	push	r0
+ 352:	0f b6       	in	r0, 0x3f	; 63
+ 354:	0f 92       	push	r0
+ 356:	11 24       	eor	r1, r1
+ 358:	8f 93       	push	r24
+ 35a:	9f 93       	push	r25
+
+timer0.timer0[0]= TCNT0;
+ 35c:	86 b5       	in	r24, 0x26	; 38
+ 35e:	80 93 1c 01 	sts	0x011C, r24
+if( RC_TIMER0_TIFR & (1<<TOIE0) ){RC_TIMER0_TIFR |= (1<<TOIE0); timer0.timer0[1]++; timer0.timer0[0]= 0; } 
+ 362:	a8 9b       	sbis	0x15, 0	; 21
+ 364:	08 c0       	rjmp	.+16     	; 0x376 <__vector_5+0x28>
+ 366:	a8 9a       	sbi	0x15, 0	; 21
+ 368:	80 91 1d 01 	lds	r24, 0x011D
+ 36c:	8f 5f       	subi	r24, 0xFF	; 255
+ 36e:	80 93 1d 01 	sts	0x011D, r24
+ 372:	10 92 1c 01 	sts	0x011C, r1
+isr_timer0_16 = timer0.timer0_16;
+ 376:	80 91 1c 01 	lds	r24, 0x011C
+ 37a:	90 91 1d 01 	lds	r25, 0x011D
+ 37e:	90 93 17 01 	sts	0x0117, r25
+ 382:	80 93 16 01 	sts	0x0116, r24
+pin_interrupt_detected = 1;
+ 386:	81 e0       	ldi	r24, 0x01	; 1
+ 388:	80 93 14 01 	sts	0x0114, r24
+
+
+return;
+}  
+ 38c:	9f 91       	pop	r25
+ 38e:	8f 91       	pop	r24
+ 390:	0f 90       	pop	r0
+ 392:	0f be       	out	0x3f, r0	; 63
+ 394:	0f 90       	pop	r0
+ 396:	1f 90       	pop	r1
+ 398:	18 95       	reti
+
+0000039a <initialize_mcu>:
+/********************************************************************************************************/
+
+/*11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111*/
+
+void initialize_mcu(void)
+{
+ 39a:	cf 93       	push	r28
+ 39c:	df 93       	push	r29
+unsigned char x = 0;
+unsigned int  eep_address = 0;
+
+asm("cli");
+ 39e:	f8 94       	cli
+
+STOP_TIMER0();
+ 3a0:	15 bc       	out	0x25, r1	; 37
+RESET_TIMER0(); 
+ 3a2:	a8 9a       	sbi	0x15, 0	; 21
+ 3a4:	16 bc       	out	0x26, r1	; 38
+ 3a6:	10 92 1d 01 	sts	0x011D, r1
+
+/* Enable pwm mode 15 (fast pwm with top=OCR1A) and stop the timer. */
+/* The timer compare module must be configured before the DDR register. */
+// THE PPM GENERATOR IS CONFIGURED HERE !
+#if RC_PPM_OUTPUT_TYPE == 0   // NEGATIVE PULSES
+RC_TIMER1_MODE_REG = (1<<COM1B1) | (1<<COM1B0) | (1<<WGM11) | (1<<WGM10);
+ 3aa:	83 e3       	ldi	r24, 0x33	; 51
+ 3ac:	80 93 80 00 	sts	0x0080, r24
+#endif
+#if RC_PPM_OUTPUT_TYPE == 1   // POSITIVE PULSES
+RC_TIMER1_MODE_REG = (1<<COM1B1) | (0<<COM1B0) | (1<<WGM11) | (1<<WGM10);
+#warning PPM output type set to POSITIVE PULSE
+#endif
+RC_TIMER1_PRESCALER_REG = (1<<WGM13)|(1<<WGM12);
+ 3b0:	88 e1       	ldi	r24, 0x18	; 24
+ 3b2:	80 93 81 00 	sts	0x0081, r24
+RC_TIMER1_COMP1_REG = RC_RESET_PW_TIMER_VAL;
+ 3b6:	8c ee       	ldi	r24, 0xEC	; 236
+ 3b8:	9c e2       	ldi	r25, 0x2C	; 44
+ 3ba:	90 93 89 00 	sts	0x0089, r25
+ 3be:	80 93 88 00 	sts	0x0088, r24
+RC_TIMER1_COMP2_REG  = RC_PPM_SYNC_PW_VAL;
+ 3c2:	8c e2       	ldi	r24, 0x2C	; 44
+ 3c4:	91 e0       	ldi	r25, 0x01	; 1
+ 3c6:	90 93 8b 00 	sts	0x008B, r25
+ 3ca:	80 93 8a 00 	sts	0x008A, r24
+RC_TIMER1_TIMSK |= (1<<OCIE1B);
+ 3ce:	80 91 6f 00 	lds	r24, 0x006F
+ 3d2:	84 60       	ori	r24, 0x04	; 4
+ 3d4:	80 93 6f 00 	sts	0x006F, r24
+RC_TIMER1_TIFR |= ( (1<<OCIE1B)|(1<<TOIE1) );
+ 3d8:	86 b3       	in	r24, 0x16	; 22
+ 3da:	85 60       	ori	r24, 0x05	; 5
+ 3dc:	86 bb       	out	0x16, r24	; 22
+
+/*Enable timer0 overflow interupt and timer1 compare B interrupt */
+RC_TIMER0_TIMSK |= (1<<TOIE0);
+ 3de:	80 91 6e 00 	lds	r24, 0x006E
+ 3e2:	81 60       	ori	r24, 0x01	; 1
+ 3e4:	80 93 6e 00 	sts	0x006E, r24
+RC_TIMER0_TIFR |= (1<<TOIE0);
+ 3e8:	a8 9a       	sbi	0x15, 0	; 21
+
+RC_LED_PORT_OUT_REG &= (~(1<<RC_LED_PIN));
+ 3ea:	28 98       	cbi	0x05, 0	; 5
+RC_LED_PORT_DDR_REG |= (1<<RC_LED_PIN);
+ 3ec:	20 9a       	sbi	0x04, 0	; 4
+LED_ON();
+ 3ee:	28 9a       	sbi	0x05, 0	; 5
+
+RC_MUX_PORT_OUT_REG &= (~(1<<RC_MUX_PIN));
+ 3f0:	29 98       	cbi	0x05, 1	; 5
+RC_MUX_PORT_DDR_REG |= (1<<RC_MUX_PIN);
+ 3f2:	21 9a       	sbi	0x04, 1	; 4
+MUX_ON();
+ 3f4:	29 9a       	sbi	0x05, 1	; 5
+
+// make the setup pin an input and activate the pull up resistor on the setup pin.
+RC_SETUP_DDR_REG &= (~(1<<RC_SETUP_PIN));
+ 3f6:	24 98       	cbi	0x04, 4	; 4
+RC_SETUP_PORT_OUT_REG |= (1<<RC_SETUP_PIN);
+ 3f8:	2c 9a       	sbi	0x05, 4	; 5
+
+/* configure the servo pins as inputs and activate their pull up resistors for noise reduction. */
+RC_SERVO_PORT_DDR_REG = 0;
+ 3fa:	1a b8       	out	0x0a, r1	; 10
+RC_SERVO_PORT_OUT_REG = 0xFF;
+ 3fc:	8f ef       	ldi	r24, 0xFF	; 255
+ 3fe:	8b b9       	out	0x0b, r24	; 11
+
+isr_channel_number = RC_PPM_GEN_CHANNELS;
+ 400:	88 e0       	ldi	r24, 0x08	; 8
+ 402:	80 93 15 01 	sts	0x0115, r24
+rc_lost_channel = (RC_LOST_CHANNEL-1);
+ 406:	82 e0       	ldi	r24, 0x02	; 2
+ 408:	80 93 12 01 	sts	0x0112, r24
+ppm_off_threshold = RC_PPM_OFF_THRESHOLD_VAL;
+ 40c:	89 ee       	ldi	r24, 0xE9	; 233
+ 40e:	97 e0       	ldi	r25, 0x07	; 7
+ 410:	90 93 11 01 	sts	0x0111, r25
+ 414:	80 93 10 01 	sts	0x0110, r24
+ 418:	c0 ef       	ldi	r28, 0xF0	; 240
+ 41a:	d3 e0       	ldi	r29, 0x03	; 3
+ 41c:	08 c0       	rjmp	.+16     	; 0x42e <initialize_mcu+0x94>
+// VERSION CONTROL 
+x=0;
+eep_address = (E2END - (sizeof(version_info)-1));
+while(version_info[x])
+    {
+       if( (eep_address) < E2END)
+ 41e:	83 e0       	ldi	r24, 0x03	; 3
+ 420:	cf 3f       	cpi	r28, 0xFF	; 255
+ 422:	d8 07       	cpc	r29, r24
+ 424:	18 f4       	brcc	.+6      	; 0x42c <initialize_mcu+0x92>
+        {
+           eeprom_write_byte( (unsigned char*)eep_address, version_info[x]);
+ 426:	ce 01       	movw	r24, r28
+ 428:	0e 94 49 05 	call	0xa92	; 0xa92 <__eewr_byte_m328p>
+        }
+       eep_address++;
+ 42c:	21 96       	adiw	r28, 0x01	; 1
+rc_lost_channel = (RC_LOST_CHANNEL-1);
+ppm_off_threshold = RC_PPM_OFF_THRESHOLD_VAL;
+// VERSION CONTROL 
+x=0;
+eep_address = (E2END - (sizeof(version_info)-1));
+while(version_info[x])
+ 42e:	ce 01       	movw	r24, r28
+ 430:	80 5f       	subi	r24, 0xF0	; 240
+ 432:	e8 2f       	mov	r30, r24
+ 434:	f0 e0       	ldi	r31, 0x00	; 0
+ 436:	e0 50       	subi	r30, 0x00	; 0
+ 438:	ff 4f       	sbci	r31, 0xFF	; 255
+ 43a:	60 81       	ld	r22, Z
+ 43c:	66 23       	and	r22, r22
+ 43e:	79 f7       	brne	.-34     	; 0x41e <initialize_mcu+0x84>
+           eeprom_write_byte( (unsigned char*)eep_address, version_info[x]);
+        }
+       eep_address++;
+       x++;
+    }
+eeprom_write_byte((unsigned char*)E2END, '\0');   //Terminate the version control string. 
+ 440:	8f ef       	ldi	r24, 0xFF	; 255
+ 442:	93 e0       	ldi	r25, 0x03	; 3
+ 444:	0e 94 49 05 	call	0xa92	; 0xa92 <__eewr_byte_m328p>
+
+asm("sei");
+ 448:	78 94       	sei
+
+/* give some time for the pull up resistors to work. ~30 ms * 3 = 90 ms */
+LED_OFF();
+ 44a:	28 98       	cbi	0x05, 0	; 5
+RESET_START_TIMER0();
+ 44c:	15 bc       	out	0x25, r1	; 37
+ 44e:	a8 9a       	sbi	0x15, 0	; 21
+ 450:	16 bc       	out	0x26, r1	; 38
+ 452:	10 92 1d 01 	sts	0x011D, r1
+ 456:	82 e0       	ldi	r24, 0x02	; 2
+ 458:	85 bd       	out	0x25, r24	; 37
+ 45a:	90 e0       	ldi	r25, 0x00	; 0
+for(x=0; x<3; x++)
+  {
+    wdt_reset();
+ 45c:	a8 95       	wdr
+    RESET_TIMER0();
+ 45e:	a8 9a       	sbi	0x15, 0	; 21
+ 460:	16 bc       	out	0x26, r1	; 38
+ 462:	10 92 1d 01 	sts	0x011D, r1
+    while(timer0.timer0[1] < RC_MAX_TIMEOUT_VAL ); 
+ 466:	80 91 1d 01 	lds	r24, 0x011D
+ 46a:	86 37       	cpi	r24, 0x76	; 118
+ 46c:	e0 f3       	brcs	.-8      	; 0x466 <initialize_mcu+0xcc>
+asm("sei");
+
+/* give some time for the pull up resistors to work. ~30 ms * 3 = 90 ms */
+LED_OFF();
+RESET_START_TIMER0();
+for(x=0; x<3; x++)
+ 46e:	9f 5f       	subi	r25, 0xFF	; 255
+ 470:	93 30       	cpi	r25, 0x03	; 3
+ 472:	a1 f7       	brne	.-24     	; 0x45c <initialize_mcu+0xc2>
+    wdt_reset();
+    RESET_TIMER0();
+    while(timer0.timer0[1] < RC_MAX_TIMEOUT_VAL ); 
+  }
+x = 0;
+STOP_TIMER0();
+ 474:	15 bc       	out	0x25, r1	; 37
+RESET_TIMER0();
+ 476:	a8 9a       	sbi	0x15, 0	; 21
+ 478:	16 bc       	out	0x26, r1	; 38
+ 47a:	10 92 1d 01 	sts	0x011D, r1
+LED_ON();
+ 47e:	28 9a       	sbi	0x05, 0	; 5
+to the timer1 compare module to initialize.
+The timer1 compare module as the Mega 168 manual states must be initialized before setting the DDR register
+of the OCR1X pins.
+*/
+//RC_PPM_PORT_OUT_REG &= (~(1<<RC_PPM_PIN));
+RC_PPM_PORT_DDR_REG |= (1<<RC_PPM_PIN);
+ 480:	22 9a       	sbi	0x04, 2	; 4
+
+return;
+}
+ 482:	df 91       	pop	r29
+ 484:	cf 91       	pop	r28
+ 486:	08 95       	ret
+
+00000488 <write_default_values_to_eeprom>:
+
+/*33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333*/
+/*44444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444*/
+
+void write_default_values_to_eeprom(void)
+{
+ 488:	cf 93       	push	r28
+ 48a:	df 93       	push	r29
+ 48c:	c4 e1       	ldi	r28, 0x14	; 20
+ 48e:	d0 e0       	ldi	r29, 0x00	; 0
+
+unsigned char x = 0;
+
+for(x=0; x<(sizeof(ppm_off_threshold_e)/sizeof(int)); x++)
+  { 
+     eeprom_write_word(&ppm_off_threshold_e[x], RC_PPM_OFF_THRESHOLD_VAL);
+ 490:	ce 01       	movw	r24, r28
+ 492:	69 ee       	ldi	r22, 0xE9	; 233
+ 494:	77 e0       	ldi	r23, 0x07	; 7
+ 496:	0e 94 57 05 	call	0xaae	; 0xaae <__eewr_word_m328p>
+ 49a:	22 96       	adiw	r28, 0x02	; 2
+void write_default_values_to_eeprom(void)
+{
+
+unsigned char x = 0;
+
+for(x=0; x<(sizeof(ppm_off_threshold_e)/sizeof(int)); x++)
+ 49c:	80 e0       	ldi	r24, 0x00	; 0
+ 49e:	ca 32       	cpi	r28, 0x2A	; 42
+ 4a0:	d8 07       	cpc	r29, r24
+ 4a2:	b1 f7       	brne	.-20     	; 0x490 <write_default_values_to_eeprom+0x8>
+ 4a4:	ca e2       	ldi	r28, 0x2A	; 42
+ 4a6:	d0 e0       	ldi	r29, 0x00	; 0
+  { 
+     eeprom_write_word(&ppm_off_threshold_e[x], RC_PPM_OFF_THRESHOLD_VAL);
+  }
+for(x=0; x < (sizeof(rc_lost_channel_e)/sizeof(char)); x++)
+  { 
+     eeprom_write_byte(&rc_lost_channel_e[x], (RC_LOST_CHANNEL - 1));
+ 4a8:	ce 01       	movw	r24, r28
+ 4aa:	62 e0       	ldi	r22, 0x02	; 2
+ 4ac:	0e 94 49 05 	call	0xa92	; 0xa92 <__eewr_byte_m328p>
+ 4b0:	21 96       	adiw	r28, 0x01	; 1
+
+for(x=0; x<(sizeof(ppm_off_threshold_e)/sizeof(int)); x++)
+  { 
+     eeprom_write_word(&ppm_off_threshold_e[x], RC_PPM_OFF_THRESHOLD_VAL);
+  }
+for(x=0; x < (sizeof(rc_lost_channel_e)/sizeof(char)); x++)
+ 4b2:	80 e0       	ldi	r24, 0x00	; 0
+ 4b4:	c5 33       	cpi	r28, 0x35	; 53
+ 4b6:	d8 07       	cpc	r29, r24
+ 4b8:	b9 f7       	brne	.-18     	; 0x4a8 <write_default_values_to_eeprom+0x20>
+  { 
+     eeprom_write_byte(&rc_lost_channel_e[x], (RC_LOST_CHANNEL - 1));
+  }  
+rc_lost_channel = (RC_LOST_CHANNEL - 1);
+ 4ba:	82 e0       	ldi	r24, 0x02	; 2
+ 4bc:	80 93 12 01 	sts	0x0112, r24
+ppm_off_threshold = RC_PPM_OFF_THRESHOLD_VAL;
+ 4c0:	89 ee       	ldi	r24, 0xE9	; 233
+ 4c2:	97 e0       	ldi	r25, 0x07	; 7
+ 4c4:	90 93 11 01 	sts	0x0111, r25
+ 4c8:	80 93 10 01 	sts	0x0110, r24
+
+return;
+}
+ 4cc:	df 91       	pop	r29
+ 4ce:	cf 91       	pop	r28
+ 4d0:	08 95       	ret
+
+000004d2 <check_for_setup_mode>:
+
+/*66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666*/
+/*77777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777*/
+
+void check_for_setup_mode(void)
+{
+ 4d2:	0f 93       	push	r16
+ 4d4:	1f 93       	push	r17
+ 4d6:	cf 93       	push	r28
+ 4d8:	df 93       	push	r29
+unsigned char x = 0;
+unsigned char y = 0;
+
+
+//We have to make sure that the setup mode is requested.  
+wdt_reset();
+ 4da:	a8 95       	wdr
+x=0;
+y=0;
+setup_mode = 1;
+RESET_START_TIMER0();
+ 4dc:	15 bc       	out	0x25, r1	; 37
+ 4de:	a8 9a       	sbi	0x15, 0	; 21
+ 4e0:	16 bc       	out	0x26, r1	; 38
+ 4e2:	10 92 1d 01 	sts	0x011D, r1
+ 4e6:	82 e0       	ldi	r24, 0x02	; 2
+ 4e8:	85 bd       	out	0x25, r24	; 37
+ 4ea:	90 e0       	ldi	r25, 0x00	; 0
+do{
+    if( (RC_SETUP_PIN_REG & (1<<RC_SETUP_PIN)) == 0){ x++; }else{ x=0; }
+ 4ec:	1c 9b       	sbis	0x03, 4	; 3
+ 4ee:	02 c0       	rjmp	.+4      	; 0x4f4 <check_for_setup_mode+0x22>
+ 4f0:	90 e0       	ldi	r25, 0x00	; 0
+ 4f2:	01 c0       	rjmp	.+2      	; 0x4f6 <check_for_setup_mode+0x24>
+ 4f4:	9f 5f       	subi	r25, 0xFF	; 255
+      {
+         if(timer0.timer0[1] > RC_MAX_TIMEOUT_VAL ){setup_mode = 0; break; } 
+ 4f6:	80 91 1d 01 	lds	r24, 0x011D
+ 4fa:	87 37       	cpi	r24, 0x77	; 119
+ 4fc:	08 f0       	brcs	.+2      	; 0x500 <check_for_setup_mode+0x2e>
+ 4fe:	d5 c0       	rjmp	.+426    	; 0x6aa <check_for_setup_mode+0x1d8>
+      }
+
+  }while(x < 100);
+ 500:	94 36       	cpi	r25, 0x64	; 100
+ 502:	a0 f3       	brcs	.-24     	; 0x4ec <check_for_setup_mode+0x1a>
+ 504:	c7 c0       	rjmp	.+398    	; 0x694 <check_for_setup_mode+0x1c2>
+/****************************************************************************************************/
+     wdt_reset();
+     success = 0;
+     if(channels_in_use > 1 )
+      {
+         if( channel_mask & (1<<(RC_LOST_CHANNEL - 1)) )
+ 506:	80 91 19 01 	lds	r24, 0x0119
+ 50a:	82 ff       	sbrs	r24, 2
+ 50c:	7c c0       	rjmp	.+248    	; 0x606 <check_for_setup_mode+0x134>
+          { 
+             rc_lost_channel = (RC_LOST_CHANNEL - 1); 
+ 50e:	82 e0       	ldi	r24, 0x02	; 2
+ 510:	80 93 12 01 	sts	0x0112, r24
+ 514:	ca e2       	ldi	r28, 0x2A	; 42
+ 516:	d0 e0       	ldi	r29, 0x00	; 0
+             for(x=0; x < (sizeof(rc_lost_channel_e)/sizeof(char)); x++)
+               { 
+                  eeprom_write_byte(&rc_lost_channel_e[x], rc_lost_channel);
+ 518:	ce 01       	movw	r24, r28
+ 51a:	60 91 12 01 	lds	r22, 0x0112
+ 51e:	0e 94 49 05 	call	0xa92	; 0xa92 <__eewr_byte_m328p>
+ 522:	21 96       	adiw	r28, 0x01	; 1
+     if(channels_in_use > 1 )
+      {
+         if( channel_mask & (1<<(RC_LOST_CHANNEL - 1)) )
+          { 
+             rc_lost_channel = (RC_LOST_CHANNEL - 1); 
+             for(x=0; x < (sizeof(rc_lost_channel_e)/sizeof(char)); x++)
+ 524:	40 e0       	ldi	r20, 0x00	; 0
+ 526:	c5 33       	cpi	r28, 0x35	; 53
+ 528:	d4 07       	cpc	r29, r20
+ 52a:	b1 f7       	brne	.-20     	; 0x518 <check_for_setup_mode+0x46>
+ 52c:	27 c0       	rjmp	.+78     	; 0x57c <check_for_setup_mode+0xaa>
+                  eeprom_write_byte(&rc_lost_channel_e[x], rc_lost_channel);
+               } 
+             success += 1;
+          }
+ 
+      }else if(channels_in_use == 1)
+ 52e:	81 30       	cpi	r24, 0x01	; 1
+ 530:	09 f0       	breq	.+2      	; 0x534 <check_for_setup_mode+0x62>
+ 532:	69 c0       	rjmp	.+210    	; 0x606 <check_for_setup_mode+0x134>
+             {
+               for(x=0; x < RC_SERVO_INPUT_CHANNELS; x++)
+                 {
+                   if(channel_mask & (1<<x))
+ 534:	80 91 19 01 	lds	r24, 0x0119
+ 538:	48 2f       	mov	r20, r24
+ 53a:	50 e0       	ldi	r21, 0x00	; 0
+ 53c:	20 e0       	ldi	r18, 0x00	; 0
+ 53e:	30 e0       	ldi	r19, 0x00	; 0
+ 540:	ca 01       	movw	r24, r20
+ 542:	02 2e       	mov	r0, r18
+ 544:	02 c0       	rjmp	.+4      	; 0x54a <check_for_setup_mode+0x78>
+ 546:	95 95       	asr	r25
+ 548:	87 95       	ror	r24
+ 54a:	0a 94       	dec	r0
+ 54c:	e2 f7       	brpl	.-8      	; 0x546 <check_for_setup_mode+0x74>
+ 54e:	80 ff       	sbrs	r24, 0
+ 550:	0f c0       	rjmp	.+30     	; 0x570 <check_for_setup_mode+0x9e>
+                    { 
+                       rc_lost_channel = x;
+ 552:	20 93 12 01 	sts	0x0112, r18
+ 556:	ca e2       	ldi	r28, 0x2A	; 42
+ 558:	d0 e0       	ldi	r29, 0x00	; 0
+                       for(x=0; x < (sizeof(rc_lost_channel_e)/sizeof(char)); x++)
+                         { 
+                            eeprom_write_byte(&rc_lost_channel_e[x], rc_lost_channel);
+ 55a:	ce 01       	movw	r24, r28
+ 55c:	60 91 12 01 	lds	r22, 0x0112
+ 560:	0e 94 49 05 	call	0xa92	; 0xa92 <__eewr_byte_m328p>
+ 564:	21 96       	adiw	r28, 0x01	; 1
+               for(x=0; x < RC_SERVO_INPUT_CHANNELS; x++)
+                 {
+                   if(channel_mask & (1<<x))
+                    { 
+                       rc_lost_channel = x;
+                       for(x=0; x < (sizeof(rc_lost_channel_e)/sizeof(char)); x++)
+ 566:	80 e0       	ldi	r24, 0x00	; 0
+ 568:	c5 33       	cpi	r28, 0x35	; 53
+ 56a:	d8 07       	cpc	r29, r24
+ 56c:	b1 f7       	brne	.-20     	; 0x55a <check_for_setup_mode+0x88>
+ 56e:	06 c0       	rjmp	.+12     	; 0x57c <check_for_setup_mode+0xaa>
+ 570:	2f 5f       	subi	r18, 0xFF	; 255
+ 572:	3f 4f       	sbci	r19, 0xFF	; 255
+             success += 1;
+          }
+ 
+      }else if(channels_in_use == 1)
+             {
+               for(x=0; x < RC_SERVO_INPUT_CHANNELS; x++)
+ 574:	28 30       	cpi	r18, 0x08	; 8
+ 576:	31 05       	cpc	r19, r1
+ 578:	19 f7       	brne	.-58     	; 0x540 <check_for_setup_mode+0x6e>
+ 57a:	45 c0       	rjmp	.+138    	; 0x606 <check_for_setup_mode+0x134>
+/****************************************************************************************************/
+/*   NOW WE NEED TO FIND THE THRESHOLD PULSE WIDTH THAT WILL BE USED AN A TX SIGNAL LOST TRIGGER    */
+/****************************************************************************************************/
+     if(success == 1)
+      {
+         wdt_reset();
+ 57c:	a8 95       	wdr
+ 57e:	c0 e0       	ldi	r28, 0x00	; 0
+ 580:	d0 e0       	ldi	r29, 0x00	; 0
+ 582:	10 e0       	ldi	r17, 0x00	; 0
+ 584:	00 e0       	ldi	r16, 0x00	; 0
+         y = 0;
+         pw_buffer = 0;
+         for(x=0; x < 10; x++)
+           {
+              pw=get_channel_pw(rc_lost_channel);
+ 586:	80 91 12 01 	lds	r24, 0x0112
+ 58a:	0e 94 9e 00 	call	0x13c	; 0x13c <get_channel_pw>
+ 58e:	9c 01       	movw	r18, r24
+              if(pw >= RC_SERVO_MIN_PW_VAL && pw <= RC_SERVO_MAX_PW_VAL)
+ 590:	80 52       	subi	r24, 0x20	; 32
+ 592:	93 40       	sbci	r25, 0x03	; 3
+ 594:	89 57       	subi	r24, 0x79	; 121
+ 596:	95 40       	sbci	r25, 0x05	; 5
+ 598:	18 f4       	brcc	.+6      	; 0x5a0 <check_for_setup_mode+0xce>
+               {
+                  pw_buffer += pw;
+ 59a:	c2 0f       	add	r28, r18
+ 59c:	d3 1f       	adc	r29, r19
+                  y++;        
+ 59e:	0f 5f       	subi	r16, 0xFF	; 255
+     if(success == 1)
+      {
+         wdt_reset();
+         y = 0;
+         pw_buffer = 0;
+         for(x=0; x < 10; x++)
+ 5a0:	1f 5f       	subi	r17, 0xFF	; 255
+ 5a2:	1a 30       	cpi	r17, 0x0A	; 10
+ 5a4:	81 f7       	brne	.-32     	; 0x586 <check_for_setup_mode+0xb4>
+               {
+                  pw_buffer += pw;
+                  y++;        
+               }
+           }
+         pw_buffer /= y;
+ 5a6:	ce 01       	movw	r24, r28
+ 5a8:	60 2f       	mov	r22, r16
+ 5aa:	70 e0       	ldi	r23, 0x00	; 0
+ 5ac:	0e 94 27 05 	call	0xa4e	; 0xa4e <__udivmodhi4>
+         wdt_reset();
+ 5b0:	a8 95       	wdr
+         if( (pw_buffer >= RC_PPM_OFF_UPPER_WINDOW_VAL) && (pw_buffer <= RC_SERVO_MAX_PW_VAL) )
+ 5b2:	cb 01       	movw	r24, r22
+ 5b4:	84 5a       	subi	r24, 0xA4	; 164
+ 5b6:	96 40       	sbci	r25, 0x06	; 6
+ 5b8:	85 5f       	subi	r24, 0xF5	; 245
+ 5ba:	91 40       	sbci	r25, 0x01	; 1
+ 5bc:	78 f4       	brcc	.+30     	; 0x5dc <check_for_setup_mode+0x10a>
+ 5be:	c4 e1       	ldi	r28, 0x14	; 20
+ 5c0:	d0 e0       	ldi	r29, 0x00	; 0
+          {
+             for(x=0; x<(sizeof(ppm_off_threshold_e)/sizeof(int)); x++)
+               { 
+                 eeprom_write_word(&ppm_off_threshold_e[x], (pw_buffer+RC_PPM_OFF_OFFSET_VAL));
+ 5c2:	8b 01       	movw	r16, r22
+ 5c4:	07 5e       	subi	r16, 0xE7	; 231
+ 5c6:	1f 4f       	sbci	r17, 0xFF	; 255
+ 5c8:	ce 01       	movw	r24, r28
+ 5ca:	b8 01       	movw	r22, r16
+ 5cc:	0e 94 57 05 	call	0xaae	; 0xaae <__eewr_word_m328p>
+ 5d0:	22 96       	adiw	r28, 0x02	; 2
+           }
+         pw_buffer /= y;
+         wdt_reset();
+         if( (pw_buffer >= RC_PPM_OFF_UPPER_WINDOW_VAL) && (pw_buffer <= RC_SERVO_MAX_PW_VAL) )
+          {
+             for(x=0; x<(sizeof(ppm_off_threshold_e)/sizeof(int)); x++)
+ 5d2:	80 e0       	ldi	r24, 0x00	; 0
+ 5d4:	ca 32       	cpi	r28, 0x2A	; 42
+ 5d6:	d8 07       	cpc	r29, r24
+ 5d8:	b9 f7       	brne	.-18     	; 0x5c8 <check_for_setup_mode+0xf6>
+ 5da:	63 c0       	rjmp	.+198    	; 0x6a2 <check_for_setup_mode+0x1d0>
+               { 
+                 eeprom_write_word(&ppm_off_threshold_e[x], (pw_buffer+RC_PPM_OFF_OFFSET_VAL));
+               } 
+             success += 1;
+
+         }else if( (pw_buffer <= RC_PPM_OFF_LOWER_WINDOW_VAL) && (pw_buffer >= RC_SERVO_MIN_PW_VAL) )
+ 5dc:	cb 01       	movw	r24, r22
+ 5de:	80 52       	subi	r24, 0x20	; 32
+ 5e0:	93 40       	sbci	r25, 0x03	; 3
+ 5e2:	85 5f       	subi	r24, 0xF5	; 245
+ 5e4:	91 40       	sbci	r25, 0x01	; 1
+ 5e6:	78 f4       	brcc	.+30     	; 0x606 <check_for_setup_mode+0x134>
+ 5e8:	c4 e1       	ldi	r28, 0x14	; 20
+ 5ea:	d0 e0       	ldi	r29, 0x00	; 0
+                {
+                   for(x=0; x<(sizeof(ppm_off_threshold_e)/sizeof(int)); x++)
+                     { 
+                       eeprom_write_word(&ppm_off_threshold_e[x], (pw_buffer-RC_PPM_OFF_OFFSET_VAL));
+ 5ec:	8b 01       	movw	r16, r22
+ 5ee:	09 51       	subi	r16, 0x19	; 25
+ 5f0:	10 40       	sbci	r17, 0x00	; 0
+ 5f2:	ce 01       	movw	r24, r28
+ 5f4:	b8 01       	movw	r22, r16
+ 5f6:	0e 94 57 05 	call	0xaae	; 0xaae <__eewr_word_m328p>
+ 5fa:	22 96       	adiw	r28, 0x02	; 2
+               } 
+             success += 1;
+
+         }else if( (pw_buffer <= RC_PPM_OFF_LOWER_WINDOW_VAL) && (pw_buffer >= RC_SERVO_MIN_PW_VAL) )
+                {
+                   for(x=0; x<(sizeof(ppm_off_threshold_e)/sizeof(int)); x++)
+ 5fc:	80 e0       	ldi	r24, 0x00	; 0
+ 5fe:	ca 32       	cpi	r28, 0x2A	; 42
+ 600:	d8 07       	cpc	r29, r24
+ 602:	b9 f7       	brne	.-18     	; 0x5f2 <check_for_setup_mode+0x120>
+ 604:	4e c0       	rjmp	.+156    	; 0x6a2 <check_for_setup_mode+0x1d0>
+                   while(timer0.timer0[1] < RC_MAX_TIMEOUT_VAL ); 
+                 }
+            }
+
+      }else{ 
+              write_default_values_to_eeprom();
+ 606:	0e 94 44 02 	call	0x488	; 0x488 <write_default_values_to_eeprom>
+                  {
+                     LED_ON(); 
+                     for(x=0; x<30; x++)
+                       {
+                         wdt_reset();
+                         RESET_START_TIMER0();
+ 60a:	32 e0       	ldi	r19, 0x02	; 2
+ 60c:	22 e0       	ldi	r18, 0x02	; 2
+ 60e:	21 c0       	rjmp	.+66     	; 0x652 <check_for_setup_mode+0x180>
+     if(success == 2)
+      { 
+        RC_SETUP_PORT_OUT_REG &= (~(1<<RC_SETUP_PIN));
+        while(1)
+            {
+              LED_ON(); 
+ 610:	28 9a       	sbi	0x05, 0	; 5
+ 612:	90 e0       	ldi	r25, 0x00	; 0
+              for(x=0; x<3; x++)
+                 {
+                   wdt_reset();
+ 614:	a8 95       	wdr
+                   RESET_START_TIMER0();
+ 616:	15 bc       	out	0x25, r1	; 37
+ 618:	a8 9a       	sbi	0x15, 0	; 21
+ 61a:	16 bc       	out	0x26, r1	; 38
+ 61c:	10 92 1d 01 	sts	0x011D, r1
+ 620:	25 bd       	out	0x25, r18	; 37
+                   /* delay ~30 ms * 3  = 100 milliseconds */
+                   while(timer0.timer0[1] < RC_MAX_TIMEOUT_VAL ); 
+ 622:	80 91 1d 01 	lds	r24, 0x011D
+ 626:	86 37       	cpi	r24, 0x76	; 118
+ 628:	e0 f3       	brcs	.-8      	; 0x622 <check_for_setup_mode+0x150>
+      { 
+        RC_SETUP_PORT_OUT_REG &= (~(1<<RC_SETUP_PIN));
+        while(1)
+            {
+              LED_ON(); 
+              for(x=0; x<3; x++)
+ 62a:	9f 5f       	subi	r25, 0xFF	; 255
+ 62c:	93 30       	cpi	r25, 0x03	; 3
+ 62e:	91 f7       	brne	.-28     	; 0x614 <check_for_setup_mode+0x142>
+                   wdt_reset();
+                   RESET_START_TIMER0();
+                   /* delay ~30 ms * 3  = 100 milliseconds */
+                   while(timer0.timer0[1] < RC_MAX_TIMEOUT_VAL ); 
+                 }
+               LED_OFF();
+ 630:	28 98       	cbi	0x05, 0	; 5
+ 632:	90 e0       	ldi	r25, 0x00	; 0
+               for(x=0; x<30; x++)
+                 {
+                   wdt_reset();
+ 634:	a8 95       	wdr
+                   RESET_START_TIMER0();
+ 636:	15 bc       	out	0x25, r1	; 37
+ 638:	a8 9a       	sbi	0x15, 0	; 21
+ 63a:	16 bc       	out	0x26, r1	; 38
+ 63c:	10 92 1d 01 	sts	0x011D, r1
+ 640:	35 bd       	out	0x25, r19	; 37
+                   /* delay ~30 ms * 30  = 900 milliseconds */
+                   while(timer0.timer0[1] < RC_MAX_TIMEOUT_VAL ); 
+ 642:	80 91 1d 01 	lds	r24, 0x011D
+ 646:	86 37       	cpi	r24, 0x76	; 118
+ 648:	e0 f3       	brcs	.-8      	; 0x642 <check_for_setup_mode+0x170>
+                   RESET_START_TIMER0();
+                   /* delay ~30 ms * 3  = 100 milliseconds */
+                   while(timer0.timer0[1] < RC_MAX_TIMEOUT_VAL ); 
+                 }
+               LED_OFF();
+               for(x=0; x<30; x++)
+ 64a:	9f 5f       	subi	r25, 0xFF	; 255
+ 64c:	9e 31       	cpi	r25, 0x1E	; 30
+ 64e:	91 f7       	brne	.-28     	; 0x634 <check_for_setup_mode+0x162>
+ 650:	df cf       	rjmp	.-66     	; 0x610 <check_for_setup_mode+0x13e>
+
+      }else{ 
+              write_default_values_to_eeprom();
+              while(1)
+                  {
+                     LED_ON(); 
+ 652:	28 9a       	sbi	0x05, 0	; 5
+ 654:	90 e0       	ldi	r25, 0x00	; 0
+                     for(x=0; x<30; x++)
+                       {
+                         wdt_reset();
+ 656:	a8 95       	wdr
+                         RESET_START_TIMER0();
+ 658:	15 bc       	out	0x25, r1	; 37
+ 65a:	a8 9a       	sbi	0x15, 0	; 21
+ 65c:	16 bc       	out	0x26, r1	; 38
+ 65e:	10 92 1d 01 	sts	0x011D, r1
+ 662:	25 bd       	out	0x25, r18	; 37
+                         /* delay ~30 ms * 30  = 900 milliseconds */
+                         while(timer0.timer0[1] < RC_MAX_TIMEOUT_VAL ); 
+ 664:	80 91 1d 01 	lds	r24, 0x011D
+ 668:	86 37       	cpi	r24, 0x76	; 118
+ 66a:	e0 f3       	brcs	.-8      	; 0x664 <check_for_setup_mode+0x192>
+      }else{ 
+              write_default_values_to_eeprom();
+              while(1)
+                  {
+                     LED_ON(); 
+                     for(x=0; x<30; x++)
+ 66c:	9f 5f       	subi	r25, 0xFF	; 255
+ 66e:	9e 31       	cpi	r25, 0x1E	; 30
+ 670:	91 f7       	brne	.-28     	; 0x656 <check_for_setup_mode+0x184>
+                         wdt_reset();
+                         RESET_START_TIMER0();
+                         /* delay ~30 ms * 30  = 900 milliseconds */
+                         while(timer0.timer0[1] < RC_MAX_TIMEOUT_VAL ); 
+                       }
+                     LED_OFF();
+ 672:	28 98       	cbi	0x05, 0	; 5
+ 674:	90 e0       	ldi	r25, 0x00	; 0
+                     for(x=0; x<3; x++)
+                       {
+                          wdt_reset();
+ 676:	a8 95       	wdr
+                          RESET_START_TIMER0();
+ 678:	15 bc       	out	0x25, r1	; 37
+ 67a:	a8 9a       	sbi	0x15, 0	; 21
+ 67c:	16 bc       	out	0x26, r1	; 38
+ 67e:	10 92 1d 01 	sts	0x011D, r1
+ 682:	35 bd       	out	0x25, r19	; 37
+                          /* delay ~30 ms * 3  = 100 milliseconds */
+                          while(timer0.timer0[1] < RC_MAX_TIMEOUT_VAL ); 
+ 684:	80 91 1d 01 	lds	r24, 0x011D
+ 688:	86 37       	cpi	r24, 0x76	; 118
+ 68a:	e0 f3       	brcs	.-8      	; 0x684 <check_for_setup_mode+0x1b2>
+                         RESET_START_TIMER0();
+                         /* delay ~30 ms * 30  = 900 milliseconds */
+                         while(timer0.timer0[1] < RC_MAX_TIMEOUT_VAL ); 
+                       }
+                     LED_OFF();
+                     for(x=0; x<3; x++)
+ 68c:	9f 5f       	subi	r25, 0xFF	; 255
+ 68e:	93 30       	cpi	r25, 0x03	; 3
+ 690:	91 f7       	brne	.-28     	; 0x676 <check_for_setup_mode+0x1a4>
+ 692:	df cf       	rjmp	.-66     	; 0x652 <check_for_setup_mode+0x180>
+if(setup_mode)
+ {
+/****************************************************************************************************/
+/*             FIRST WE MUST FIND WHICH CHANNEL WILL BE USED AS A TX SIGNAL LOST INDICATOR          */
+/****************************************************************************************************/
+     wdt_reset();
+ 694:	a8 95       	wdr
+     success = 0;
+     if(channels_in_use > 1 )
+ 696:	80 91 18 01 	lds	r24, 0x0118
+ 69a:	82 30       	cpi	r24, 0x02	; 2
+ 69c:	08 f0       	brcs	.+2      	; 0x6a0 <check_for_setup_mode+0x1ce>
+ 69e:	33 cf       	rjmp	.-410    	; 0x506 <check_for_setup_mode+0x34>
+ 6a0:	46 cf       	rjmp	.-372    	; 0x52e <check_for_setup_mode+0x5c>
+/****************************************************************************************************/
+/*            LASTLY WE MUST INDICATE TO THE USER IF THE SETUP PROCEDURE WAS SUCCESSFUL             */
+/****************************************************************************************************/     
+     if(success == 2)
+      { 
+        RC_SETUP_PORT_OUT_REG &= (~(1<<RC_SETUP_PIN));
+ 6a2:	2c 98       	cbi	0x05, 4	; 5
+            {
+              LED_ON(); 
+              for(x=0; x<3; x++)
+                 {
+                   wdt_reset();
+                   RESET_START_TIMER0();
+ 6a4:	32 e0       	ldi	r19, 0x02	; 2
+ 6a6:	22 e0       	ldi	r18, 0x02	; 2
+ 6a8:	b3 cf       	rjmp	.-154    	; 0x610 <check_for_setup_mode+0x13e>
+           }
+
+ } // End of "if(setup_mode)" statement.
+
+return;
+}
+ 6aa:	df 91       	pop	r29
+ 6ac:	cf 91       	pop	r28
+ 6ae:	1f 91       	pop	r17
+ 6b0:	0f 91       	pop	r16
+ 6b2:	08 95       	ret
+
+000006b4 <load_values_from_eeprom>:
+11 copies of each variable are read and if more than 50% + 1 values are the same and within limits
+this value is taken to be valid.
+If not all 11 values are the same then the array is written again with this 50% +1 value. 
+*/
+void load_values_from_eeprom(void)
+{
+ 6b4:	6f 92       	push	r6
+ 6b6:	7f 92       	push	r7
+ 6b8:	8f 92       	push	r8
+ 6ba:	9f 92       	push	r9
+ 6bc:	af 92       	push	r10
+ 6be:	bf 92       	push	r11
+ 6c0:	cf 92       	push	r12
+ 6c2:	df 92       	push	r13
+ 6c4:	ef 92       	push	r14
+ 6c6:	ff 92       	push	r15
+ 6c8:	0f 93       	push	r16
+ 6ca:	1f 93       	push	r17
+ 6cc:	cf 93       	push	r28
+ 6ce:	df 93       	push	r29
+unsigned char match_upper_limit = 0;
+unsigned char match_lower_limit = 0;
+unsigned char x = 0;
+unsigned char y = 0;
+
+wdt_reset();
+ 6d0:	a8 95       	wdr
+ 6d2:	5a e2       	ldi	r21, 0x2A	; 42
+ 6d4:	e5 2e       	mov	r14, r21
+ 6d6:	50 e0       	ldi	r21, 0x00	; 0
+ 6d8:	f5 2e       	mov	r15, r21
+ 6da:	87 01       	movw	r16, r14
+11 copies of each variable are read and if more than 50% + 1 values are the same and within limits
+this value is taken to be valid.
+If not all 11 values are the same then the array is written again with this 50% +1 value. 
+*/
+void load_values_from_eeprom(void)
+{
+ 6dc:	4b e0       	ldi	r20, 0x0B	; 11
+ 6de:	84 2e       	mov	r8, r20
+ 6e0:	91 2c       	mov	r9, r1
+ 6e2:	8e 0c       	add	r8, r14
+ 6e4:	9f 1c       	adc	r9, r15
+match_lower_limit = (((sizeof(rc_lost_channel_e)/sizeof(char))/2)+1);
+
+for(x=0; x<match_upper_limit; x++)
+  {
+    match = 0;
+    eeprom_buf_x = eeprom_read_byte(&rc_lost_channel_e[x]); 
+ 6e6:	c8 01       	movw	r24, r16
+ 6e8:	0e 94 3b 05 	call	0xa76	; 0xa76 <__eerd_byte_m328p>
+ 6ec:	c8 2e       	mov	r12, r24
+ 6ee:	a8 2e       	mov	r10, r24
+ 6f0:	bb 24       	eor	r11, r11
+ 6f2:	ca e2       	ldi	r28, 0x2A	; 42
+ 6f4:	d0 e0       	ldi	r29, 0x00	; 0
+ 6f6:	dd 24       	eor	r13, r13
+    for(y=0; y<match_upper_limit; y++)
+      {
+         eeprom_buf_y = eeprom_read_byte(&rc_lost_channel_e[y]);
+ 6f8:	ce 01       	movw	r24, r28
+ 6fa:	0e 94 3b 05 	call	0xa76	; 0xa76 <__eerd_byte_m328p>
+         if(eeprom_buf_y == eeprom_buf_x){ match++; }
+ 6fe:	90 e0       	ldi	r25, 0x00	; 0
+ 700:	8a 15       	cp	r24, r10
+ 702:	9b 05       	cpc	r25, r11
+ 704:	09 f4       	brne	.+2      	; 0x708 <load_values_from_eeprom+0x54>
+ 706:	d3 94       	inc	r13
+ 708:	21 96       	adiw	r28, 0x01	; 1
+11 copies of each variable are read and if more than 50% + 1 values are the same and within limits
+this value is taken to be valid.
+If not all 11 values are the same then the array is written again with this 50% +1 value. 
+*/
+void load_values_from_eeprom(void)
+{
+ 70a:	35 e3       	ldi	r19, 0x35	; 53
+ 70c:	63 2e       	mov	r6, r19
+ 70e:	30 e0       	ldi	r19, 0x00	; 0
+ 710:	73 2e       	mov	r7, r19
+
+for(x=0; x<match_upper_limit; x++)
+  {
+    match = 0;
+    eeprom_buf_x = eeprom_read_byte(&rc_lost_channel_e[x]); 
+    for(y=0; y<match_upper_limit; y++)
+ 712:	8c 16       	cp	r8, r28
+ 714:	9d 06       	cpc	r9, r29
+ 716:	81 f7       	brne	.-32     	; 0x6f8 <load_values_from_eeprom+0x44>
+         eeprom_buf_y = eeprom_read_byte(&rc_lost_channel_e[y]);
+         if(eeprom_buf_y == eeprom_buf_x){ match++; }
+      }
+    // If 50% +1 or more char values in the array are the same a match has been found. 
+    // Now test them to see if they are within limits.
+    if(match >= match_lower_limit )
+ 718:	25 e0       	ldi	r18, 0x05	; 5
+ 71a:	2d 15       	cp	r18, r13
+ 71c:	a8 f4       	brcc	.+42     	; 0x748 <load_values_from_eeprom+0x94>
+     {
+        if( eeprom_buf_x < RC_SERVO_INPUT_CHANNELS )
+ 71e:	88 e0       	ldi	r24, 0x08	; 8
+ 720:	a8 16       	cp	r10, r24
+ 722:	b1 04       	cpc	r11, r1
+ 724:	08 f0       	brcs	.+2      	; 0x728 <load_values_from_eeprom+0x74>
+ 726:	6d c0       	rjmp	.+218    	; 0x802 <load_values_from_eeprom+0x14e>
+         {
+           rc_lost_channel = eeprom_buf_x; //Load the stored value to throttle_thershold.
+ 728:	c0 92 12 01 	sts	0x0112, r12
+           if(match < match_upper_limit)
+ 72c:	9a e0       	ldi	r25, 0x0A	; 10
+ 72e:	9d 15       	cp	r25, r13
+ 730:	88 f0       	brcs	.+34     	; 0x754 <load_values_from_eeprom+0xa0>
+            {
+               for(x=0; x<match_upper_limit; x++)
+                 {
+                    eeprom_write_byte(&rc_lost_channel_e[x], eeprom_buf_x); 
+ 732:	c7 01       	movw	r24, r14
+ 734:	6c 2d       	mov	r22, r12
+ 736:	0e 94 49 05 	call	0xa92	; 0xa92 <__eewr_byte_m328p>
+ 73a:	08 94       	sec
+ 73c:	e1 1c       	adc	r14, r1
+ 73e:	f1 1c       	adc	r15, r1
+        if( eeprom_buf_x < RC_SERVO_INPUT_CHANNELS )
+         {
+           rc_lost_channel = eeprom_buf_x; //Load the stored value to throttle_thershold.
+           if(match < match_upper_limit)
+            {
+               for(x=0; x<match_upper_limit; x++)
+ 740:	6e 14       	cp	r6, r14
+ 742:	7f 04       	cpc	r7, r15
+ 744:	b1 f7       	brne	.-20     	; 0x732 <load_values_from_eeprom+0x7e>
+ 746:	06 c0       	rjmp	.+12     	; 0x754 <load_values_from_eeprom+0xa0>
+ 748:	0f 5f       	subi	r16, 0xFF	; 255
+ 74a:	1f 4f       	sbci	r17, 0xFF	; 255
+/*                 READ WHICH CHANNEL WILL BE USED AS A RX LOST INDICATOR                           */
+/****************************************************************************************************/ 
+match_upper_limit = (sizeof(rc_lost_channel_e)/sizeof(char));
+match_lower_limit = (((sizeof(rc_lost_channel_e)/sizeof(char))/2)+1);
+
+for(x=0; x<match_upper_limit; x++)
+ 74c:	80 16       	cp	r8, r16
+ 74e:	91 06       	cpc	r9, r17
+ 750:	51 f6       	brne	.-108    	; 0x6e6 <load_values_from_eeprom+0x32>
+ 752:	57 c0       	rjmp	.+174    	; 0x802 <load_values_from_eeprom+0x14e>
+         }else{ match = 0; }
+        break;
+     }
+  }
+
+if( match < match_lower_limit ){ write_default_values_to_eeprom();  return; }
+ 754:	04 e1       	ldi	r16, 0x14	; 20
+ 756:	10 e0       	ldi	r17, 0x00	; 0
+ 758:	68 01       	movw	r12, r16
+11 copies of each variable are read and if more than 50% + 1 values are the same and within limits
+this value is taken to be valid.
+If not all 11 values are the same then the array is written again with this 50% +1 value. 
+*/
+void load_values_from_eeprom(void)
+{
+ 75a:	26 e1       	ldi	r18, 0x16	; 22
+ 75c:	82 2e       	mov	r8, r18
+ 75e:	91 2c       	mov	r9, r1
+ 760:	80 0e       	add	r8, r16
+ 762:	91 1e       	adc	r9, r17
+match_lower_limit = (((sizeof(ppm_off_threshold_e)/sizeof(int))/2)+1);
+
+for(x=0; x < match_upper_limit; x++)
+  {
+    match = 0;
+    eeprom_buf_x = eeprom_read_word(&ppm_off_threshold_e[x]); 
+ 764:	c6 01       	movw	r24, r12
+ 766:	0e 94 43 05 	call	0xa86	; 0xa86 <__eerd_word_m328p>
+ 76a:	7c 01       	movw	r14, r24
+ 76c:	c4 e1       	ldi	r28, 0x14	; 20
+ 76e:	d0 e0       	ldi	r29, 0x00	; 0
+ 770:	bb 24       	eor	r11, r11
+    for(y=0; y < match_upper_limit; y++)
+      {
+         eeprom_buf_y = eeprom_read_word(&ppm_off_threshold_e[y]);
+ 772:	ce 01       	movw	r24, r28
+ 774:	0e 94 43 05 	call	0xa86	; 0xa86 <__eerd_word_m328p>
+         if(eeprom_buf_y == eeprom_buf_x){ match++; }
+ 778:	8e 15       	cp	r24, r14
+ 77a:	9f 05       	cpc	r25, r15
+ 77c:	09 f4       	brne	.+2      	; 0x780 <load_values_from_eeprom+0xcc>
+ 77e:	b3 94       	inc	r11
+ 780:	22 96       	adiw	r28, 0x02	; 2
+11 copies of each variable are read and if more than 50% + 1 values are the same and within limits
+this value is taken to be valid.
+If not all 11 values are the same then the array is written again with this 50% +1 value. 
+*/
+void load_values_from_eeprom(void)
+{
+ 782:	9a e2       	ldi	r25, 0x2A	; 42
+ 784:	69 2e       	mov	r6, r25
+ 786:	90 e0       	ldi	r25, 0x00	; 0
+ 788:	79 2e       	mov	r7, r25
+
+for(x=0; x < match_upper_limit; x++)
+  {
+    match = 0;
+    eeprom_buf_x = eeprom_read_word(&ppm_off_threshold_e[x]); 
+    for(y=0; y < match_upper_limit; y++)
+ 78a:	8c 16       	cp	r8, r28
+ 78c:	9d 06       	cpc	r9, r29
+ 78e:	89 f7       	brne	.-30     	; 0x772 <load_values_from_eeprom+0xbe>
+         eeprom_buf_y = eeprom_read_word(&ppm_off_threshold_e[y]);
+         if(eeprom_buf_y == eeprom_buf_x){ match++; }
+      }
+    // If 50% +1 or more integer values in the array are the same a match has been found. 
+    // Now test them to see if they are within limits.
+    if(match >= match_lower_limit )
+ 790:	25 e0       	ldi	r18, 0x05	; 5
+ 792:	2b 15       	cp	r18, r11
+ 794:	70 f5       	brcc	.+92     	; 0x7f2 <load_values_from_eeprom+0x13e>
+     {
+        if( (eeprom_buf_x >= RC_PPM_OFF_UPPER_WINDOW_VAL) && (eeprom_buf_x <= RC_SERVO_MAX_PW_VAL) )
+ 796:	c7 01       	movw	r24, r14
+ 798:	84 5a       	subi	r24, 0xA4	; 164
+ 79a:	96 40       	sbci	r25, 0x06	; 6
+ 79c:	85 5f       	subi	r24, 0xF5	; 245
+ 79e:	91 40       	sbci	r25, 0x01	; 1
+ 7a0:	88 f4       	brcc	.+34     	; 0x7c4 <load_values_from_eeprom+0x110>
+         {
+            ppm_off_threshold = eeprom_buf_x; //Load the stored value to throttle_thershold.
+ 7a2:	f0 92 11 01 	sts	0x0111, r15
+ 7a6:	e0 92 10 01 	sts	0x0110, r14
+            if(match < match_upper_limit)
+ 7aa:	8a e0       	ldi	r24, 0x0A	; 10
+ 7ac:	8b 15       	cp	r24, r11
+ 7ae:	58 f1       	brcs	.+86     	; 0x806 <load_values_from_eeprom+0x152>
+             {
+               for(x=0; x < match_upper_limit; x++){ eeprom_write_word(&ppm_off_threshold_e[x], eeprom_buf_x); }
+ 7b0:	c8 01       	movw	r24, r16
+ 7b2:	b7 01       	movw	r22, r14
+ 7b4:	0e 94 57 05 	call	0xaae	; 0xaae <__eewr_word_m328p>
+ 7b8:	0e 5f       	subi	r16, 0xFE	; 254
+ 7ba:	1f 4f       	sbci	r17, 0xFF	; 255
+ 7bc:	60 16       	cp	r6, r16
+ 7be:	71 06       	cpc	r7, r17
+ 7c0:	b9 f7       	brne	.-18     	; 0x7b0 <load_values_from_eeprom+0xfc>
+ 7c2:	21 c0       	rjmp	.+66     	; 0x806 <load_values_from_eeprom+0x152>
+             }
+        
+          }else if( (eeprom_buf_x <= RC_PPM_OFF_LOWER_WINDOW_VAL) && (eeprom_buf_x >= RC_SERVO_MIN_PW_VAL) )
+ 7c4:	c7 01       	movw	r24, r14
+ 7c6:	80 52       	subi	r24, 0x20	; 32
+ 7c8:	93 40       	sbci	r25, 0x03	; 3
+ 7ca:	85 5f       	subi	r24, 0xF5	; 245
+ 7cc:	91 40       	sbci	r25, 0x01	; 1
+ 7ce:	c8 f4       	brcc	.+50     	; 0x802 <load_values_from_eeprom+0x14e>
+                 {
+                    ppm_off_threshold = eeprom_buf_x; //Load the stored value to throttle_thershold.
+ 7d0:	f0 92 11 01 	sts	0x0111, r15
+ 7d4:	e0 92 10 01 	sts	0x0110, r14
+                    if(match < match_upper_limit)
+ 7d8:	8a e0       	ldi	r24, 0x0A	; 10
+ 7da:	8b 15       	cp	r24, r11
+ 7dc:	a0 f0       	brcs	.+40     	; 0x806 <load_values_from_eeprom+0x152>
+                     {
+                       for(x=0; x < match_upper_limit; x++){ eeprom_write_word(&ppm_off_threshold_e[x], eeprom_buf_x); }
+ 7de:	c8 01       	movw	r24, r16
+ 7e0:	b7 01       	movw	r22, r14
+ 7e2:	0e 94 57 05 	call	0xaae	; 0xaae <__eewr_word_m328p>
+ 7e6:	0e 5f       	subi	r16, 0xFE	; 254
+ 7e8:	1f 4f       	sbci	r17, 0xFF	; 255
+ 7ea:	60 16       	cp	r6, r16
+ 7ec:	71 06       	cpc	r7, r17
+ 7ee:	b9 f7       	brne	.-18     	; 0x7de <load_values_from_eeprom+0x12a>
+ 7f0:	0a c0       	rjmp	.+20     	; 0x806 <load_values_from_eeprom+0x152>
+ 7f2:	82 e0       	ldi	r24, 0x02	; 2
+ 7f4:	90 e0       	ldi	r25, 0x00	; 0
+ 7f6:	c8 0e       	add	r12, r24
+ 7f8:	d9 1e       	adc	r13, r25
+/*             NOW READ THE CHANNEL'S PULSE WIDTH SO IT CAN BE USED AS A TRIGGER                    */
+/****************************************************************************************************/ 
+match_upper_limit = (sizeof(ppm_off_threshold_e)/sizeof(int));
+match_lower_limit = (((sizeof(ppm_off_threshold_e)/sizeof(int))/2)+1);
+
+for(x=0; x < match_upper_limit; x++)
+ 7fa:	8c 14       	cp	r8, r12
+ 7fc:	9d 04       	cpc	r9, r13
+ 7fe:	09 f0       	breq	.+2      	; 0x802 <load_values_from_eeprom+0x14e>
+ 800:	b1 cf       	rjmp	.-158    	; 0x764 <load_values_from_eeprom+0xb0>
+                 }else{ match = 0; }
+        break;
+     }
+  }
+
+if( match < match_lower_limit ){ write_default_values_to_eeprom();  return; }
+ 802:	0e 94 44 02 	call	0x488	; 0x488 <write_default_values_to_eeprom>
+
+
+return;
+}
+ 806:	df 91       	pop	r29
+ 808:	cf 91       	pop	r28
+ 80a:	1f 91       	pop	r17
+ 80c:	0f 91       	pop	r16
+ 80e:	ff 90       	pop	r15
+ 810:	ef 90       	pop	r14
+ 812:	df 90       	pop	r13
+ 814:	cf 90       	pop	r12
+ 816:	bf 90       	pop	r11
+ 818:	af 90       	pop	r10
+ 81a:	9f 90       	pop	r9
+ 81c:	8f 90       	pop	r8
+ 81e:	7f 90       	pop	r7
+ 820:	6f 90       	pop	r6
+ 822:	08 95       	ret
+
+00000824 <main>:
+
+/********************************************************************************************************/
+/*                                         MAIN FUNCTION                                                */
+/********************************************************************************************************/
+__attribute__((noreturn)) void main(void)
+{
+ 824:	df 93       	push	r29
+ 826:	cf 93       	push	r28
+ 828:	cd b7       	in	r28, 0x3d	; 61
+ 82a:	de b7       	in	r29, 0x3e	; 62
+ 82c:	60 97       	sbiw	r28, 0x10	; 16
+ 82e:	0f b6       	in	r0, 0x3f	; 63
+ 830:	f8 94       	cli
+ 832:	de bf       	out	0x3e, r29	; 62
+ 834:	0f be       	out	0x3f, r0	; 63
+ 836:	cd bf       	out	0x3d, r28	; 61
+unsigned char  tx_signal_detected = 0;
+unsigned char  servo_signals_lost = 0;
+unsigned char  led_frequency = 0;
+unsigned char  led_counter = 0;
+
+wdt_disable();
+ 838:	88 e1       	ldi	r24, 0x18	; 24
+ 83a:	0f b6       	in	r0, 0x3f	; 63
+ 83c:	f8 94       	cli
+ 83e:	80 93 60 00 	sts	0x0060, r24
+ 842:	10 92 60 00 	sts	0x0060, r1
+ 846:	0f be       	out	0x3f, r0	; 63
+wdt_enable(WDTO_120MS);
+ 848:	2b e0       	ldi	r18, 0x0B	; 11
+ 84a:	88 e1       	ldi	r24, 0x18	; 24
+ 84c:	90 e0       	ldi	r25, 0x00	; 0
+ 84e:	0f b6       	in	r0, 0x3f	; 63
+ 850:	f8 94       	cli
+ 852:	a8 95       	wdr
+ 854:	80 93 60 00 	sts	0x0060, r24
+ 858:	0f be       	out	0x3f, r0	; 63
+ 85a:	20 93 60 00 	sts	0x0060, r18
+wdt_reset();
+ 85e:	a8 95       	wdr
+
+initialize_mcu(); 
+ 860:	0e 94 cd 01 	call	0x39a	; 0x39a <initialize_mcu>
+/*Load the values stored in the eeprom like the throttle channel threshold etc. */
+load_values_from_eeprom();  
+ 864:	0e 94 5a 03 	call	0x6b4	; 0x6b4 <load_values_from_eeprom>
+//Load the ISR array. This way if a channel is not connected it will have the failsafe value.
+load_failsafe_values(); 
+ 868:	0e 94 2d 01 	call	0x25a	; 0x25a <load_failsafe_values>
+/*
+The "wait_for_rx(): function waits untill the receiver has been powered up and running
+so we can then detect the connected channels with certainty.
+*/
+wait_for_rx(); 
+ 86c:	0e 94 e7 00 	call	0x1ce	; 0x1ce <wait_for_rx>
+channels_in_use = detect_connected_channels();
+ 870:	0e 94 53 00 	call	0xa6	; 0xa6 <detect_connected_channels>
+ 874:	80 93 18 01 	sts	0x0118, r24
+check_for_setup_mode();
+ 878:	0e 94 69 02 	call	0x4d2	; 0x4d2 <check_for_setup_mode>
+led_frequency = RC_LED_FREQUENCY_VAL_1HZ; //load the defined led frequency.
+
+/****************************  SETUP THE PIN INTERRUPT  *************************************************/
+
+// Now we must disable the pin interrupt. 
+RC_PIN_INT_EN_REG &= (~(1<<RC_PIN_INT_EN_BIT));
+ 87c:	80 91 68 00 	lds	r24, 0x0068
+ 880:	8b 7f       	andi	r24, 0xFB	; 251
+ 882:	80 93 68 00 	sts	0x0068, r24
+//Now we must load the pin interrupt mask register.
+RC_PIN_INT_MASK_REG = channel_mask;
+ 886:	90 91 19 01 	lds	r25, 0x0119
+ 88a:	90 93 6d 00 	sts	0x006D, r25
+//Clear any pin interrupt flag set. 
+RC_PIN_INT_FLAG_REG |= (1<<RC_PIN_INT_FLAG_BIT);
+ 88e:	da 9a       	sbi	0x1b, 2	; 27
+// Clear the pin interrupt ISR detection variable
+pin_interrupt_detected = 0;
+ 890:	10 92 14 01 	sts	0x0114, r1
+// Finally we can enable the pin interrupt again. 
+RC_PIN_INT_EN_REG |= (1<<RC_PIN_INT_EN_BIT); 
+ 894:	80 91 68 00 	lds	r24, 0x0068
+ 898:	84 60       	ori	r24, 0x04	; 4
+ 89a:	80 93 68 00 	sts	0x0068, r24
+// Set and start timer1
+RESET_START_TIMER0();
+ 89e:	15 bc       	out	0x25, r1	; 37
+ 8a0:	a8 9a       	sbi	0x15, 0	; 21
+ 8a2:	16 bc       	out	0x26, r1	; 38
+ 8a4:	10 92 1d 01 	sts	0x011D, r1
+ 8a8:	82 e0       	ldi	r24, 0x02	; 2
+ 8aa:	85 bd       	out	0x25, r24	; 37
+// Take a snapshot of the servo pins in order to establish a starting point.
+pin_reg_buffer1 = (RC_SERVO_PORT_PIN_REG & channel_mask);
+ 8ac:	19 b1       	in	r17, 0x09	; 9
+ 8ae:	19 23       	and	r17, r25
+RESET_START_TIMER0();
+ 8b0:	15 bc       	out	0x25, r1	; 37
+ 8b2:	a8 9a       	sbi	0x15, 0	; 21
+ 8b4:	16 bc       	out	0x26, r1	; 38
+ 8b6:	10 92 1d 01 	sts	0x011D, r1
+ 8ba:	85 bd       	out	0x25, r24	; 37
+ 8bc:	88 24       	eor	r8, r8
+ 8be:	bb 24       	eor	r11, r11
+ 8c0:	aa 24       	eor	r10, r10
+ 8c2:	cc 24       	eor	r12, r12
+ 8c4:	c3 94       	inc	r12
+ 8c6:	90 e1       	ldi	r25, 0x10	; 16
+ 8c8:	99 2e       	mov	r9, r25
+ 8ca:	dd 24       	eor	r13, r13
+static inline void ppm_on(void)
+{
+
+   RC_TIMER1_PRESCALER_REG  &= (~(TIMER1_PRESCALER_BITS));	
+   TCNT1 = 0; 
+   isr_channel_number = RC_PPM_GEN_CHANNELS;		
+ 8cc:	88 e0       	ldi	r24, 0x08	; 8
+ 8ce:	48 2e       	mov	r4, r24
+   RC_TIMER1_COMP1_REG = RC_RESET_PW_TIMER_VAL;
+   RC_TIMER1_COMP2_REG = RC_PPM_SYNC_PW_VAL;	
+ 8d0:	0c e2       	ldi	r16, 0x2C	; 44
+ 8d2:	20 2e       	mov	r2, r16
+ 8d4:	01 e0       	ldi	r16, 0x01	; 1
+ 8d6:	30 2e       	mov	r3, r16
+pin_reg_buffer1 = (RC_SERVO_PORT_PIN_REG & channel_mask);
+RESET_START_TIMER0();
+//Main endless loop.
+while(1)
+    {
+       wdt_reset();
+ 8d8:	a8 95       	wdr
+       channel_mask_buffer = channel_mask;
+ 8da:	60 90 19 01 	lds	r6, 0x0119
+       RESET_TIMER0(); 
+ 8de:	a8 9a       	sbi	0x15, 0	; 21
+ 8e0:	16 bc       	out	0x26, r1	; 38
+ 8e2:	10 92 1d 01 	sts	0x011D, r1
+                                     channel_mask_buffer &= (~y);
+                                     timer0_buffer = isr_timer0_16 - pw_of_channel[x];
+                                     if( (timer0_buffer > RC_SERVO_MIN_PW_VAL) && (timer0_buffer < RC_SERVO_MAX_PW_VAL) )
+                                      { 
+#if defined(RC_LOST_CHANNEL) && RC_LOST_CHANNEL > 0
+                                         if(x == rc_lost_channel)
+ 8e6:	50 90 12 01 	lds	r5, 0x0112
+                                          {
+                                             if(ppm_off_threshold > RC_SERVO_CENTER_PW_VAL)
+ 8ea:	e0 90 10 01 	lds	r14, 0x0110
+ 8ee:	f0 90 11 01 	lds	r15, 0x0111
+ 8f2:	06 2d       	mov	r16, r6
+ 8f4:	5b c0       	rjmp	.+182    	; 0x9ac <__stack+0xad>
+       RESET_TIMER0(); 
+       while(channel_mask_buffer)
+           { 
+              /* Wait until a pin change state. */
+              do{  
+                   if( timer0.timer0[1] >=  RC_MAX_TIMEOUT_VAL )
+ 8f6:	80 91 1d 01 	lds	r24, 0x011D
+ 8fa:	86 37       	cpi	r24, 0x76	; 118
+ 8fc:	08 f0       	brcs	.+2      	; 0x900 <__stack+0x1>
+ 8fe:	5c c0       	rjmp	.+184    	; 0x9b8 <__stack+0xb9>
+                    { 
+                      goto PPM_CONTROL;
+                    }
+                 
+                }while( pin_interrupt_detected == 0 );
+ 900:	80 91 14 01 	lds	r24, 0x0114
+ 904:	88 23       	and	r24, r24
+ 906:	b9 f3       	breq	.-18     	; 0x8f6 <main+0xd2>
+              x=0;
+              y=1;
+              //Only pins that changed their state will be tested for a high or low level
+              pin_reg_buffer0 = (RC_SERVO_PORT_PIN_REG & channel_mask_buffer);
+ 908:	79 b1       	in	r23, 0x09	; 9
+ 90a:	70 23       	and	r23, r16
+              pin_interrupt_detected = 0;
+ 90c:	10 92 14 01 	sts	0x0114, r1
+              channels_to_check = pin_reg_buffer1 ^ pin_reg_buffer0;
+ 910:	77 2e       	mov	r7, r23
+ 912:	71 26       	eor	r7, r17
+ 914:	de 01       	movw	r26, r28
+ 916:	11 96       	adiw	r26, 0x01	; 1
+ 918:	61 e0       	ldi	r22, 0x01	; 1
+ 91a:	40 e0       	ldi	r20, 0x00	; 0
+ 91c:	50 e0       	ldi	r21, 0x00	; 0
+              pin_reg_buffer1 = pin_reg_buffer0; 
+              while(x<RC_SERVO_INPUT_CHANNELS)
+                  {
+                     if(channels_to_check & y)
+ 91e:	86 2f       	mov	r24, r22
+ 920:	87 21       	and	r24, r7
+ 922:	09 f4       	brne	.+2      	; 0x926 <__stack+0x27>
+ 924:	3a c0       	rjmp	.+116    	; 0x99a <__stack+0x9b>
+                      {
+                         if( (pin_reg_buffer0 & y) ) /* if the pin is high then... */ 
+ 926:	86 2f       	mov	r24, r22
+ 928:	87 23       	and	r24, r23
+ 92a:	49 f0       	breq	.+18     	; 0x93e <__stack+0x3f>
+                          {
+                             pw_of_channel[x] = isr_timer0_16;
+ 92c:	80 91 16 01 	lds	r24, 0x0116
+ 930:	90 91 17 01 	lds	r25, 0x0117
+ 934:	11 96       	adiw	r26, 0x01	; 1
+ 936:	9c 93       	st	X, r25
+ 938:	8e 93       	st	-X, r24
+                             channel_status |= y; /* signal that this channel got it's timer stamp. */
+ 93a:	86 2a       	or	r8, r22
+ 93c:	2e c0       	rjmp	.+92     	; 0x99a <__stack+0x9b>
+                                        
+                          }else{
+                                 if( channel_status & y )
+ 93e:	88 2d       	mov	r24, r8
+ 940:	86 23       	and	r24, r22
+ 942:	59 f1       	breq	.+86     	; 0x99a <__stack+0x9b>
+                                  {
+                                     channel_mask_buffer &= (~y);
+ 944:	86 2f       	mov	r24, r22
+ 946:	80 95       	com	r24
+ 948:	08 23       	and	r16, r24
+                                     timer0_buffer = isr_timer0_16 - pw_of_channel[x];
+ 94a:	20 91 16 01 	lds	r18, 0x0116
+ 94e:	30 91 17 01 	lds	r19, 0x0117
+ 952:	8d 91       	ld	r24, X+
+ 954:	9c 91       	ld	r25, X
+ 956:	11 97       	sbiw	r26, 0x01	; 1
+ 958:	28 1b       	sub	r18, r24
+ 95a:	39 0b       	sbc	r19, r25
+                                     if( (timer0_buffer > RC_SERVO_MIN_PW_VAL) && (timer0_buffer < RC_SERVO_MAX_PW_VAL) )
+ 95c:	c9 01       	movw	r24, r18
+ 95e:	81 52       	subi	r24, 0x21	; 33
+ 960:	93 40       	sbci	r25, 0x03	; 3
+ 962:	87 57       	subi	r24, 0x77	; 119
+ 964:	95 40       	sbci	r25, 0x05	; 5
+ 966:	c8 f4       	brcc	.+50     	; 0x99a <__stack+0x9b>
+                                      { 
+#if defined(RC_LOST_CHANNEL) && RC_LOST_CHANNEL > 0
+                                         if(x == rc_lost_channel)
+ 968:	54 16       	cp	r5, r20
+ 96a:	61 f4       	brne	.+24     	; 0x984 <__stack+0x85>
+                                          {
+                                             if(ppm_off_threshold > RC_SERVO_CENTER_PW_VAL)
+ 96c:	8d ed       	ldi	r24, 0xDD	; 221
+ 96e:	e8 16       	cp	r14, r24
+ 970:	85 e0       	ldi	r24, 0x05	; 5
+ 972:	f8 06       	cpc	r15, r24
+ 974:	20 f0       	brcs	.+8      	; 0x97e <__stack+0x7f>
+                                              { 
+                                                 if(timer0_buffer >= ppm_off_threshold)
+ 976:	2e 15       	cp	r18, r14
+ 978:	3f 05       	cpc	r19, r15
+ 97a:	20 f0       	brcs	.+8      	; 0x984 <__stack+0x85>
+ 97c:	1b c0       	rjmp	.+54     	; 0x9b4 <__stack+0xb5>
+                                                     channel_mask_buffer = 0xFF; 
+                                                     goto PPM_CONTROL; 
+                                                  }
+
+                                              }else{
+                                                      if(timer0_buffer <= ppm_off_threshold)
+ 97e:	e2 16       	cp	r14, r18
+ 980:	f3 06       	cpc	r15, r19
+ 982:	c0 f4       	brcc	.+48     	; 0x9b4 <__stack+0xb5>
+                                                          goto PPM_CONTROL;
+                                                       }
+                                                   }
+                                          }
+#endif
+                                         if(servo_signals_lost == 0)
+ 984:	cc 20       	and	r12, r12
+ 986:	49 f4       	brne	.+18     	; 0x99a <__stack+0x9b>
+                                          {
+                                             asm("cli"); //Atomic operation needed here.
+ 988:	f8 94       	cli
+                                             isr_channel_pw[x] = timer0_buffer; 
+ 98a:	fa 01       	movw	r30, r20
+ 98c:	ee 0f       	add	r30, r30
+ 98e:	ff 1f       	adc	r31, r31
+ 990:	e2 5e       	subi	r30, 0xE2	; 226
+ 992:	fe 4f       	sbci	r31, 0xFE	; 254
+ 994:	31 83       	std	Z+1, r19	; 0x01
+ 996:	20 83       	st	Z, r18
+                                             asm("sei");
+ 998:	78 94       	sei
+ 99a:	4f 5f       	subi	r20, 0xFF	; 255
+ 99c:	5f 4f       	sbci	r21, 0xFF	; 255
+ 99e:	12 96       	adiw	r26, 0x02	; 2
+ 9a0:	17 2f       	mov	r17, r23
+              //Only pins that changed their state will be tested for a high or low level
+              pin_reg_buffer0 = (RC_SERVO_PORT_PIN_REG & channel_mask_buffer);
+              pin_interrupt_detected = 0;
+              channels_to_check = pin_reg_buffer1 ^ pin_reg_buffer0;
+              pin_reg_buffer1 = pin_reg_buffer0; 
+              while(x<RC_SERVO_INPUT_CHANNELS)
+ 9a2:	48 30       	cpi	r20, 0x08	; 8
+ 9a4:	51 05       	cpc	r21, r1
+ 9a6:	11 f0       	breq	.+4      	; 0x9ac <__stack+0xad>
+                                  }  // End of "if( channel_status & y )" statement.            
+ 
+                               }   // End of "if( (pin_reg_buffer0 & y) )...else..." statement         
+                      }	// End of "if(channels_to_check & y)" statement.
+                   x++;
+                   y=(y<<1);
+ 9a8:	66 0f       	add	r22, r22
+ 9aa:	b9 cf       	rjmp	.-142    	; 0x91e <__stack+0x1f>
+while(1)
+    {
+       wdt_reset();
+       channel_mask_buffer = channel_mask;
+       RESET_TIMER0(); 
+       while(channel_mask_buffer)
+ 9ac:	00 23       	and	r16, r16
+ 9ae:	09 f0       	breq	.+2      	; 0x9b2 <__stack+0xb3>
+ 9b0:	a2 cf       	rjmp	.-188    	; 0x8f6 <main+0xd2>
+ 9b2:	02 c0       	rjmp	.+4      	; 0x9b8 <__stack+0xb9>
+                   x++;
+                   y=(y<<1);
+              }
+ 
+           }	// End of "while(channel_mask_buffer)" loop.
+PPM_CONTROL:
+ 9b4:	17 2f       	mov	r17, r23
+ 9b6:	0f ef       	ldi	r16, 0xFF	; 255
+ 
+       led_counter++;
+ 9b8:	d3 94       	inc	r13
+       if( led_counter >= led_frequency ){ led_counter = 0; TOGGLE_LED();  }
+ 9ba:	d9 14       	cp	r13, r9
+ 9bc:	28 f0       	brcs	.+10     	; 0x9c8 <__stack+0xc9>
+ 9be:	85 b1       	in	r24, 0x05	; 5
+ 9c0:	91 e0       	ldi	r25, 0x01	; 1
+ 9c2:	89 27       	eor	r24, r25
+ 9c4:	85 b9       	out	0x05, r24	; 5
+ 9c6:	dd 24       	eor	r13, r13
+
+//We need 'RC_MAX_BAD_PPM_FRAMES" consecutive readings in order to change the PPM generator's status.
+       if( channel_mask_buffer == 0  ) //IF ALL CHANNELS HAVE BEEN MEASURED...
+ 9c8:	00 23       	and	r16, r16
+ 9ca:	51 f5       	brne	.+84     	; 0xa20 <__stack+0x121>
+        {
+           tx_signal_lost = 0;         
+           if(servo_signals_lost == 1) //IF PREVIOUSLY THE SERVO SIGNAL WAS LOST...
+ 9cc:	e1 e0       	ldi	r30, 0x01	; 1
+ 9ce:	ce 16       	cp	r12, r30
+ 9d0:	c1 f5       	brne	.+112    	; 0xa42 <__stack+0x143>
+            {
+              tx_signal_detected++;
+ 9d2:	a3 94       	inc	r10
+              if(tx_signal_detected > RC_MAX_BAD_PPM_FRAMES)
+ 9d4:	84 e0       	ldi	r24, 0x04	; 4
+ 9d6:	8a 15       	cp	r24, r10
+ 9d8:	a0 f5       	brcc	.+104    	; 0xa42 <__stack+0x143>
+
+
+static inline void ppm_on(void)
+{
+
+   RC_TIMER1_PRESCALER_REG  &= (~(TIMER1_PRESCALER_BITS));	
+ 9da:	80 91 81 00 	lds	r24, 0x0081
+ 9de:	8d 7f       	andi	r24, 0xFD	; 253
+ 9e0:	80 93 81 00 	sts	0x0081, r24
+   TCNT1 = 0; 
+ 9e4:	10 92 85 00 	sts	0x0085, r1
+ 9e8:	10 92 84 00 	sts	0x0084, r1
+   isr_channel_number = RC_PPM_GEN_CHANNELS;		
+ 9ec:	40 92 15 01 	sts	0x0115, r4
+   RC_TIMER1_COMP1_REG = RC_RESET_PW_TIMER_VAL;
+ 9f0:	8c ee       	ldi	r24, 0xEC	; 236
+ 9f2:	9c e2       	ldi	r25, 0x2C	; 44
+ 9f4:	90 93 89 00 	sts	0x0089, r25
+ 9f8:	80 93 88 00 	sts	0x0088, r24
+   RC_TIMER1_COMP2_REG = RC_PPM_SYNC_PW_VAL;	
+ 9fc:	30 92 8b 00 	sts	0x008B, r3
+ a00:	20 92 8a 00 	sts	0x008A, r2
+   RC_TIMER1_TIFR |= ( (1<<OCIE1B)|(1<<TOIE1) );			
+ a04:	86 b3       	in	r24, 0x16	; 22
+ a06:	85 60       	ori	r24, 0x05	; 5
+ a08:	86 bb       	out	0x16, r24	; 22
+   RC_TIMER1_PRESCALER_REG |= TIMER1_PRESCALER_BITS;
+ a0a:	80 91 81 00 	lds	r24, 0x0081
+ a0e:	82 60       	ori	r24, 0x02	; 2
+ a10:	80 93 81 00 	sts	0x0081, r24
+              tx_signal_detected++;
+              if(tx_signal_detected > RC_MAX_BAD_PPM_FRAMES)
+               {
+                 ppm_on();
+                 servo_signals_lost = 0;
+                 LED_ON();
+ a14:	28 9a       	sbi	0x05, 0	; 5
+ a16:	bb 24       	eor	r11, r11
+ a18:	cc 24       	eor	r12, r12
+ a1a:	74 e0       	ldi	r23, 0x04	; 4
+ a1c:	97 2e       	mov	r9, r23
+ a1e:	0f c0       	rjmp	.+30     	; 0xa3e <__stack+0x13f>
+                 led_frequency = RC_LED_FREQUENCY_VAL;
+               }
+            }
+        }
+       else{  //IF NOT ALL CHANNELS HAVE BEEN MEASURED...
+              pin_reg_buffer1 = (RC_SERVO_PORT_PIN_REG & channel_mask);
+ a20:	19 b1       	in	r17, 0x09	; 9
+ a22:	16 21       	and	r17, r6
+              tx_signal_detected = 0;
+              if(servo_signals_lost == 0)
+ a24:	cc 20       	and	r12, r12
+ a26:	79 f4       	brne	.+30     	; 0xa46 <__stack+0x147>
+               {
+		   tx_signal_lost++;
+ a28:	b3 94       	inc	r11
+                   if(tx_signal_lost > RC_MAX_BAD_PPM_FRAMES)
+ a2a:	94 e0       	ldi	r25, 0x04	; 4
+ a2c:	9b 15       	cp	r25, r11
+ a2e:	58 f4       	brcc	.+22     	; 0xa46 <__stack+0x147>
+                    { 
+                       servo_signals_lost = 1;
+                       led_counter = 0;
+                       led_frequency = RC_LED_FREQUENCY_VAL_1HZ;
+#if defined(RC_USE_FAILSAFE) && RC_USE_FAILSAFE == 1
+                       load_failsafe_values();
+ a30:	0e 94 2d 01 	call	0x25a	; 0x25a <load_failsafe_values>
+ a34:	aa 24       	eor	r10, r10
+ a36:	cc 24       	eor	r12, r12
+ a38:	c3 94       	inc	r12
+ a3a:	60 e1       	ldi	r22, 0x10	; 16
+ a3c:	96 2e       	mov	r9, r22
+ a3e:	dd 24       	eor	r13, r13
+ a40:	03 c0       	rjmp	.+6      	; 0xa48 <__stack+0x149>
+ a42:	bb 24       	eor	r11, r11
+ a44:	01 c0       	rjmp	.+2      	; 0xa48 <__stack+0x149>
+ a46:	aa 24       	eor	r10, r10
+                    } 
+               } //end of if(servo_signals_lost == 0) statement.
+           } //end of if( x > (channels_in_use/2)  ){...}else{...} statement.
+
+
+mux_control();
+ a48:	0e 94 59 01 	call	0x2b2	; 0x2b2 <mux_control>
+ a4c:	45 cf       	rjmp	.-374    	; 0x8d8 <main+0xb4>
+
+00000a4e <__udivmodhi4>:
+ a4e:	aa 1b       	sub	r26, r26
+ a50:	bb 1b       	sub	r27, r27
+ a52:	51 e1       	ldi	r21, 0x11	; 17
+ a54:	07 c0       	rjmp	.+14     	; 0xa64 <__udivmodhi4_ep>
+
+00000a56 <__udivmodhi4_loop>:
+ a56:	aa 1f       	adc	r26, r26
+ a58:	bb 1f       	adc	r27, r27
+ a5a:	a6 17       	cp	r26, r22
+ a5c:	b7 07       	cpc	r27, r23
+ a5e:	10 f0       	brcs	.+4      	; 0xa64 <__udivmodhi4_ep>
+ a60:	a6 1b       	sub	r26, r22
+ a62:	b7 0b       	sbc	r27, r23
+
+00000a64 <__udivmodhi4_ep>:
+ a64:	88 1f       	adc	r24, r24
+ a66:	99 1f       	adc	r25, r25
+ a68:	5a 95       	dec	r21
+ a6a:	a9 f7       	brne	.-22     	; 0xa56 <__udivmodhi4_loop>
+ a6c:	80 95       	com	r24
+ a6e:	90 95       	com	r25
+ a70:	bc 01       	movw	r22, r24
+ a72:	cd 01       	movw	r24, r26
+ a74:	08 95       	ret
+
+00000a76 <__eerd_byte_m328p>:
+ a76:	f9 99       	sbic	0x1f, 1	; 31
+ a78:	fe cf       	rjmp	.-4      	; 0xa76 <__eerd_byte_m328p>
+ a7a:	92 bd       	out	0x22, r25	; 34
+ a7c:	81 bd       	out	0x21, r24	; 33
+ a7e:	f8 9a       	sbi	0x1f, 0	; 31
+ a80:	99 27       	eor	r25, r25
+ a82:	80 b5       	in	r24, 0x20	; 32
+ a84:	08 95       	ret
+
+00000a86 <__eerd_word_m328p>:
+ a86:	a8 e1       	ldi	r26, 0x18	; 24
+ a88:	b0 e0       	ldi	r27, 0x00	; 0
+ a8a:	42 e0       	ldi	r20, 0x02	; 2
+ a8c:	50 e0       	ldi	r21, 0x00	; 0
+ a8e:	0c 94 5e 05 	jmp	0xabc	; 0xabc <__eerd_blraw_m328p>
+
+00000a92 <__eewr_byte_m328p>:
+ a92:	26 2f       	mov	r18, r22
+
+00000a94 <__eewr_r18_m328p>:
+ a94:	f9 99       	sbic	0x1f, 1	; 31
+ a96:	fe cf       	rjmp	.-4      	; 0xa94 <__eewr_r18_m328p>
+ a98:	1f ba       	out	0x1f, r1	; 31
+ a9a:	92 bd       	out	0x22, r25	; 34
+ a9c:	81 bd       	out	0x21, r24	; 33
+ a9e:	20 bd       	out	0x20, r18	; 32
+ aa0:	0f b6       	in	r0, 0x3f	; 63
+ aa2:	f8 94       	cli
+ aa4:	fa 9a       	sbi	0x1f, 2	; 31
+ aa6:	f9 9a       	sbi	0x1f, 1	; 31
+ aa8:	0f be       	out	0x3f, r0	; 63
+ aaa:	01 96       	adiw	r24, 0x01	; 1
+ aac:	08 95       	ret
+
+00000aae <__eewr_word_m328p>:
+ aae:	0e 94 49 05 	call	0xa92	; 0xa92 <__eewr_byte_m328p>
+ ab2:	27 2f       	mov	r18, r23
+ ab4:	0c 94 4a 05 	jmp	0xa94	; 0xa94 <__eewr_r18_m328p>
+
+00000ab8 <__eerd_block_m328p>:
+ ab8:	dc 01       	movw	r26, r24
+ aba:	cb 01       	movw	r24, r22
+
+00000abc <__eerd_blraw_m328p>:
+ abc:	fc 01       	movw	r30, r24
+ abe:	f9 99       	sbic	0x1f, 1	; 31
+ ac0:	fe cf       	rjmp	.-4      	; 0xabe <__eerd_blraw_m328p+0x2>
+ ac2:	06 c0       	rjmp	.+12     	; 0xad0 <__eerd_blraw_m328p+0x14>
+ ac4:	f2 bd       	out	0x22, r31	; 34
+ ac6:	e1 bd       	out	0x21, r30	; 33
+ ac8:	f8 9a       	sbi	0x1f, 0	; 31
+ aca:	31 96       	adiw	r30, 0x01	; 1
+ acc:	00 b4       	in	r0, 0x20	; 32
+ ace:	0d 92       	st	X+, r0
+ ad0:	41 50       	subi	r20, 0x01	; 1
+ ad2:	50 40       	sbci	r21, 0x00	; 0
+ ad4:	b8 f7       	brcc	.-18     	; 0xac4 <__eerd_blraw_m328p+0x8>
+ ad6:	08 95       	ret
+
+00000ad8 <_exit>:
+ ad8:	f8 94       	cli
+
+00000ada <__stop_program>:
+ ada:	ff cf       	rjmp	.-2      	; 0xada <__stop_program>
