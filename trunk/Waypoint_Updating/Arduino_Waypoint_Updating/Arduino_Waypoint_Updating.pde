@@ -2,6 +2,7 @@
 //Chris Kirby
 
 //checksum does not include the CHK message
+#include <avr/eeprom.h>
 
 byte buffer[6];
 byte packet[164];
@@ -19,6 +20,7 @@ char check[] = "CHK";
 byte flag=0;
 byte list_flag=0;
 byte number_waypoints=0;
+byte current_list=1;
 
 void setup()
 {
@@ -142,12 +144,26 @@ void loop()
       }
       
       //Parse number of waypoints in list
-      number_waypoints=packet[7];
+      number_waypoints=packet[6];
+      Serial.println();
+      Serial.print("NUMBER OF WPTS:");
+      Serial.println(number_waypoints,DEC);
       
       //parse waypoints
       long latitude=0;
       long longitude=0;
       int altitude=0;
+      
+      //find currrent waypoint list in eeprom
+      eeprom_busy_wait();
+      current_list=eeprom_read_byte((uint8_t *)0x47);
+      
+      //determine start address for waypoint list based on the current_list
+      //write waypoint to the list that is not current
+      int start_address = 0;
+      if (current_list==1) start_address=int(0x20C);
+      else if (current_list==2) start_address=int(0x4A);
+      else start_address=int(0x4A);
       
       for(int i=0 ; i<number_waypoints;i++)
       {
@@ -155,16 +171,16 @@ void loop()
         latitude=(long(packet[j+7])<<24)+(long(packet[j+8])<<16)+(long(packet[j+9])<<8)+long(packet[j+10]);
         longitude=(long(packet[j+11])<<24)+(long(packet[j+12])<<16)+(long(packet[j+13])<<8)+long(packet[j+14]);
         altitude=(int(packet[j+15])<<8)+(packet[j+16]);
-        Serial.print("1:");
-        Serial.println((packet[j+11]),HEX);
-        Serial.print("2:");
-        Serial.println((packet[j+12]),HEX);
-        Serial.print("3:");
-        Serial.println((packet[j+13]),HEX);
-        Serial.print("4:");
-        Serial.println((packet[j+14]),HEX);
-             
         
+        eeprom_busy_wait();
+        eeprom_write_dword((uint32_t *)start_address, latitude);
+        start_address+=4;
+        eeprom_busy_wait();
+        eeprom_write_dword((uint32_t *)start_address, longitude);
+        start_address+=4;
+        eeprom_busy_wait();
+        eeprom_write_word((uint16_t *)start_address, altitude);
+        start_address+=2;
         
         Serial.print("LATITUDE:");
         Serial.println(latitude,DEC);
@@ -173,6 +189,27 @@ void loop()
         Serial.print("ALTITUDE:");
         Serial.println(altitude,DEC);
         //write to EEPROM
+      }
+      
+      start_address=int(0x4A);
+      for(int i=0; i<number_waypoints;i++)
+      {
+        eeprom_busy_wait();
+        latitude=eeprom_read_dword((uint32_t *)start_address);
+        start_address+=4;
+        eeprom_busy_wait();
+        longitude=eeprom_read_dword((uint32_t *)start_address);
+        start_address+=4;
+        eeprom_busy_wait();
+        altitude=eeprom_read_word((uint16_t *)start_address);
+        start_address+=2;
+        
+        Serial.print("EEPROM LATITUDE:");
+        Serial.println(latitude,DEC);
+        Serial.print("EEPROM LONGITUDE:");
+        Serial.println(longitude,DEC);
+        Serial.print("EEPROM ALTITUDE:");
+        Serial.println(altitude,DEC);
       }
       
       packet_case=0;
