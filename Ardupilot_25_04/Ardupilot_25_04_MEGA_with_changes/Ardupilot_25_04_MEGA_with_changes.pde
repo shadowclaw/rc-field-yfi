@@ -11,6 +11,19 @@
 #include "easystar_25.h"
 //#include "jason_EZStar.h"
 
+volatile unsigned int Start_Pulse =0;
+volatile unsigned int Stop_Pulse =0;
+volatile unsigned int Pulse_Width =0;
+
+volatile int Test=0;
+volatile int Test2=0;
+volatile int Temp=0;
+volatile int Counter=0;
+volatile byte PPM_Counter=0;
+volatile int PWM_RAW[8] = {2400,2400,2400,2400,2400,2400,2400,2400};
+
+long timer=0;
+long timer2=0;
  
 
 
@@ -160,11 +173,11 @@ struct Location next_WP 			= {0,0,0};		// next waypoint
 
 // Sensors 
 // --------
-long  analog0				= 511;		// Thermopiles - Pitch
-long  analog1				= 511;		// Thermopiles - Roll
-long  analog2				= 511;		// Thermopiles - Z
-float analog3				= 511;		// Airspeed Sensor - is a float to better handle filtering
-float analog5				= 511;		// Battery Voltage
+long  analog11				= 511;		// Thermopiles - Pitch
+long  analog9				= 511;		// Thermopiles - Roll
+long  analog7				= 511;		// Thermopiles - Z
+float analog5				= 511;		// Airspeed Sensor - is a float to better handle filtering
+float analog3				= 511;		// Battery Voltage
 float battery_voltage 		= 0;
 int ir_max					= 300;		// used to scale Thermopile output to 511
 long roll_sensor			= 0;		// how much we're turning in degrees * 100
