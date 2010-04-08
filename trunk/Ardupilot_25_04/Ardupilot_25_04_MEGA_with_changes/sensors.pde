@@ -1,8 +1,8 @@
 #if GPS_PROTOCOL != 5
 void read_XY_analogs()
 {
-	analog11 = analogRead(11);
-	analog9 = analogRead(9);
+	analog0 = analogRead(11);
+	analog1 = analogRead(9);
 
 #if ENABLE_Z_SENSOR == 0
 	if (analog11 > 511){

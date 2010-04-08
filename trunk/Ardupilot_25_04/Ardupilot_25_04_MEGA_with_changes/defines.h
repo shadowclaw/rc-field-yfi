@@ -23,6 +23,7 @@
 #define AUTO 5
 #define RTL 6
 #define LOITER 7
+#define KIRBY_SPECIAL 8
 
 // Waypoint Modes
 // ----------------
