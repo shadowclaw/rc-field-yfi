@@ -13,9 +13,9 @@ void OutputCh(byte ch, int pwm)
     case 5:  OCR4B=pwm; break;  //ch5
     case 6:  OCR3C=pwm; break;  //ch6
     case 7:  OCR3B=pwm; break;  //ch7
-    case 8:  OCR5A=pwm; break;  //ch8,  PL3
-    case 9:  OCR1A=pwm; break;  //ch9,  PB5
-    case 10: OCR3A=pwm; break;  //ch10, PE3
+    //case 8:  OCR5A=pwm; break;  //ch8,  PL3
+    //case 9:  OCR1A=pwm; break;  //ch9,  PB5
+    //case 10: OCR3A=pwm; break;  //ch10, PE3
   } 
   
 }
@@ -27,14 +27,14 @@ int InputCh(byte ch)
 
 void Init_PWM1(void)
 {
-  pinMode(11,OUTPUT);
+  //pinMode(11,OUTPUT);
   pinMode(12,OUTPUT);
   pinMode(13,OUTPUT);
 
   //Remember the registers not declared here remains zero by default... 
   TCCR1A =((1<<WGM11)|(1<<COM1A1)|(1<<COM1B1)|(1<<COM1C1)); //Please read page 131 of DataSheet, we are changing the registers settings of WGM11,COM1B1,COM1A1 to 1 thats all... 
   TCCR1B = (1<<WGM13)|(1<<WGM12)|(1<<CS11); //Prescaler set to 8, that give us a resolution of 2us, read page 134 of data sheet
-  OCR1A = 3000; //PB5, none
+  //OCR1A = 3000; //PB5, none
   OCR1B = 3000; //PB6, OUT2
   OCR1C = 3000; //PB7  OUT3
   ICR1 = 40000; //50hz freq...Datasheet says  (system_freq/prescaler)/target frequency. So (16000000hz/8)/50hz=40000,
