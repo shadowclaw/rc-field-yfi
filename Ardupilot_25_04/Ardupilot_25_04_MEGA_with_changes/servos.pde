@@ -2,7 +2,7 @@
 // ------------------------------------------------
 void demo_servos()
 {
-	set_servo_mux(true);
+	//set_servo_mux(true);
 	//OCR2A = 0; // stop the throttle output temporarily - not confirmed ESCs will like this, but should be OK
 	/*OCR1A = 1600 * 2;
 	OCR1B = 1600 * 2;
@@ -21,7 +21,7 @@ void demo_servos()
         delay(200);
         OutputCh(0,1500);
         OutputCh(1,1500);
-        set_servo_mux(false);
+        //set_servo_mux(false);
 	//update_throttle();
 }
 

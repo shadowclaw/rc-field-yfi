@@ -265,14 +265,14 @@ void loop()
 		if(GPS_fix != VALID_GPS){
 			GPS_light = !GPS_light;
 			if(GPS_light){
-				digitalWrite(12, HIGH);	
+				digitalWrite(11, HIGH);	
 			}else{
-				digitalWrite(12, LOW);	
+				digitalWrite(11, LOW);	
 			}		
 		}else{
 			if(!GPS_light){
 				GPS_light = true;
-				digitalWrite(12, HIGH);
+				digitalWrite(11, HIGH);
 			}
 		}
 
