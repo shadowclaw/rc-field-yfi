@@ -68,18 +68,18 @@ byte 	config_tool_options	= 0;			//
 // -----------------------
 float 	servo_roll			= 0;	 		// degrees to servos
 float 	servo_pitch			= 0;	 		// degrees to servos
-int 	servo_throttle		= 0;			// 0-125 value
+int 	servo_throttle		        = 0;			// 0-125 value
 
 // GPS variables
 // -------------
 int 	GPS_flag			= -1;			// have we achieved first lock and set Home?
 boolean GPS_light			= false;		// status of the GPS light
 byte 	GPS_fix				= BAD_GPS;		// This variable store the status of the GPS
-float 	ground_speed 		= 0;			// centimeters/second
+float 	ground_speed 		        = 0;			// centimeters/second
 float 	climb_rate 			= 0;			// meters/second
 byte 	GPS_update			= GPS_NONE;		// do we have GPS data to work with?
 const float t7				= 10000000.0;	// used to scale GPS values for EEPROM storage
-boolean print_telemetry		= false;
+boolean print_telemetry		        = false;
 long 	iTOW 				= 0; //GPS Millisecond Time of Week
 
 // navigation 
@@ -167,7 +167,7 @@ struct Location {
 
 struct Location home 				= {0,0,0};		// home location
 struct Location prev_WP 			= {0,0,0};		// last waypoint
-struct Location current_loc 		= {0,0,0};		// current location
+struct Location current_loc 		        = {0,0,0};		// current location
 struct Location est_loc 			= {0,0,0};		// for estimation
 struct Location next_WP 			= {0,0,0};		// next waypoint
 
@@ -178,22 +178,26 @@ long  analog9				= 511;		// Thermopiles - Roll
 long  analog7				= 511;		// Thermopiles - Z
 float analog5				= 511;		// Airspeed Sensor - is a float to better handle filtering
 float analog3				= 511;		// Battery Voltage
-float battery_voltage 		= 0;
-int ir_max					= 300;		// used to scale Thermopile output to 511
+float battery_voltage 		        = 0;
+int ir_max				= 300;		// used to scale Thermopile output to 511
 long roll_sensor			= 0;		// how much we're turning in degrees * 100
 long pitch_sensor			= 0;		// our angle of attack in degrees * 100
 int airspeed_offset			= 0;		// read the analog airspeed sensors to get this
-long airspeed_current		= 0;		// airspeed as a pressure value
+long airspeed_current		        = 0;		// airspeed as a pressure value
 
 // Debugging
 // ---------
 long est_turn_rate			= 0;
-long actual_turn_rate		= 0;
+long actual_turn_rate		        = 0;
 
 
 // Basic Initialization
 //---------------------
 void setup() {
+        
+        pinMode(47,OUTPUT); 
+        digitalWrite(47, HIGH);	
+        
 	#if GPS_PROTOCOL == 0
 		Serial.begin(FIFTY_SEVEN_K_BAUD);
 	#endif
@@ -265,14 +269,14 @@ void loop()
 		if(GPS_fix != VALID_GPS){
 			GPS_light = !GPS_light;
 			if(GPS_light){
-				digitalWrite(11, HIGH);	
+				digitalWrite(49, HIGH);	
 			}else{
-				digitalWrite(11, LOW);	
+				digitalWrite(49, LOW);	
 			}		
 		}else{
 			if(!GPS_light){
 				GPS_light = true;
-				digitalWrite(11, HIGH);
+				digitalWrite(49, HIGH);
 			}
 		}
 
