@@ -14,7 +14,7 @@ void demo_servos()
 	OCR1B = 1500 * 2;*/
         OutputCh(0,1600);    //  0 = Rudder
         OutputCh(1,1600);    //  1 = Elevator
-        OutputCh(2,0);       //  2 = Throttle
+        OutputCh(2,1200);       //  2 = Throttle
         delay(400);
         OutputCh(0,1400);
         OutputCh(1,1400);
@@ -24,7 +24,7 @@ void demo_servos()
         //set_servo_mux(false);
 	//update_throttle();
 }
-
+/*
 void set_servo_mux(boolean mode)
 {
 	while(TCNT1 < 20000){};
@@ -37,7 +37,7 @@ void set_servo_mux(boolean mode)
 		digitalWrite(4, LOW); 
 		pinMode(4, INPUT);
 	}
-}
+}*/
 // wants +- 4500°
 void set_degrees_mix()
 {
@@ -78,7 +78,7 @@ void set_ch1_degrees(float deg){
 	ch1_out = constrain(ch1_out, 	ch1_min, 	ch1_max);
 	ch1_out = constrain(ch1_out, 	1000, 	2000);
 	//OCR1A = ch1_out * 2;	//OCR1A is the channel 1 pulse width in half microseconds
-        OutputCh(1,ch1_out);
+        OutputCh(0,ch1_out);
 }
 
 // requires +- 4500°
@@ -87,7 +87,7 @@ void set_ch1_degrees_mix(float deg){
 	ch1_out = constrain(ch1_out, 	ch1_min, 	ch1_max);
 	ch1_out = constrain(ch1_out, 	1000, 	2000);
 	//OCR1A = ch1_out * 2;
-        OutputCh(1,ch1_out);
+        OutputCh(0,ch1_out);
 }
 
 // requires +- 4500°
@@ -96,7 +96,7 @@ void set_ch2_degrees(float deg){
 	ch2_out = constrain(ch2_out, 	ch2_min, 	ch2_max);
 	ch2_out = constrain(ch2_out, 	1000, 	2000);
 	//OCR1B = ch2_out * 2;
-        OutputCh(2,ch2_out);
+        OutputCh(1,ch2_out);
 }
 
 // requires +- 4500°
@@ -105,7 +105,7 @@ void set_ch2_degrees_mix(float deg){
 	ch2_out = constrain(ch2_out, 	ch2_min, 	ch2_max);
 	ch2_out = constrain(ch2_out, 	1000, 	2000);
 	//OCR1B = ch2_out * 2;
-        OutputCh(2,ch2_out);
+        OutputCh(1,ch2_out);
 }
 
 // sets the throttle timer value based on throttle percent
@@ -158,7 +158,7 @@ ISR(TIMER2_COMPA_vect) // Timer/Counter2 Compare Match A
 	// the counter will increment 1 every 8µs
 	PORTB &= 0xFE;//Putting the pin low
 }
-*/
+
 
 void init_PWM()
 {
@@ -179,5 +179,5 @@ void init_PWM()
 	OCR2A 	= 125 + ch3_timer_trim; //1500us/8; The top, when the counter reaches the value definied here will execute the interrupt, 187 is the servo centered... 
 	TIMSK1 |= _BV(ICIE1); 	// Timer/Counter1, Input Capture Interrupt Enable //PB0 - output throttle
 	TIMSK2 	= _BV(OCIE2A);	// Timer/Counter2 Compare Match A
-}
+}*/
 

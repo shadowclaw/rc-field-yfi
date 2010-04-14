@@ -1,8 +1,8 @@
 #if GPS_PROTOCOL != 5
 void read_XY_analogs()
 {
-	analog0 = analogRead(11);
-	analog1 = analogRead(9);
+	analog11 = analogRead(11);
+	analog9 = analogRead(9);
 
 #if ENABLE_Z_SENSOR == 0
 	if (analog11 > 511){
@@ -19,7 +19,7 @@ void read_XY_analogs()
 	
 	// Read Airspeed
 	#if AIRSPEED_SENSOR == 1
-		analog3 = ((float)analogRead(5) * .10) + (analog5 * .90);
+		analog5 = ((float)analogRead(5) * .10) + (analog5 * .90);
 		airspeed_current	= (int)analog5 - airspeed_offset;
 	#endif
 }
@@ -53,8 +53,8 @@ void read_analogs(void)
 #endif
 
 #if BATTERY_EVENT == 1
-	analog1 = ((float)analogRead(1)*.01) + ((float)analog1*.99);
-	battery_voltage = BATTERY_VOLTAGE(analog1);
+	analog3 = ((float)analogRead(3)*.01) + ((float)analog3*.99);
+	battery_voltage = BATTERY_VOLTAGE(analog3);
 	if(battery_voltage < INPUT_VOLTAGE)
 		low_battery_event();
 #endif

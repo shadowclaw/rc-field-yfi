@@ -252,7 +252,7 @@ void setup_throttle_trims()
 
 void init_radio()
 {
-	#if THROTTLE_IN	== 1
+	/*#if THROTTLE_IN	== 1
 		// enable in change interrupt on PB5 (digital pin 13)
 		PCMSK0 = _BV(PCINT5);
 	#endif
@@ -271,7 +271,7 @@ void init_radio()
 	for(int c=0; c < 10; c++){
 		delay(20);
 		read_radio();
-	}	
+	}*/	
 }
 
 void read_radio_limits()

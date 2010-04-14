@@ -40,19 +40,22 @@ void init_ardupilot()
 	// p1				// PD1 - TXD  		- Serial TX 
 	// PD2 - INT0 		- Rudder in							- INPUT Rudder/Aileron
 	// PD3 - INT1 		- Elevator in 						- INPUT Elevator
-	pinMode(4,INPUT);	// PD4 - XCK/T0 	- MUX pin							- Connected to Pin 2 on ATtiny
-	pinMode(5,INPUT);	// PD5 - T0		- Mode pin							- Connected to Pin 6 on ATtiny   - Select on MUX
-	pinMode(6,INPUT);	// PD6 - T1		- Ground start signaling Pin	
+	//pinMode(4,INPUT);	// PD4 - XCK/T0 	- MUX pin							- Connected to Pin 2 on ATtiny
+	//pinMode(5,INPUT);	// PD5 - T0		- Mode pin							- Connected to Pin 6 on ATtiny   - Select on MUX
+	//pinMode(6,INPUT);	// PD6 - T1		- Ground start signaling Pin	
 	pinMode(7,OUTPUT);	// PD7 - AIN0		- GPS Mux pin 
 	// PORTB
-	pinMode(8,OUTPUT); 	// PB0 - AIN1		- Servo throttle					- OUTPUT THROTTLE
+	//pinMode(8,OUTPUT); 	// PB0 - AIN1		- Servo throttle					- OUTPUT THROTTLE
 	// PB1 - OC1A		- Elevator PWM out					- Elevator PWM out
 	// PB2 - OC1B		- Rudder PWM out					- Rudder PWM out
-	pinMode(11,OUTPUT); // PB3 - MOSI/OC2	- GPS status						- 
-	pinMode(12,OUTPUT); // PB4 - MISO		- Blue LED pin  - GPS Lock			- GPS Lock
-	pinMode(13,INPUT); 	//  PB5 - SCK		- Yellow LED pin   				- INPUT Throttle
-
-	digitalWrite(6,HIGH);
+	//pinMode(11,OUTPUT); // PB3 - MOSI/OC2	- GPS status						- 
+	//pinMode(12,OUTPUT); // PB4 - MISO		- Blue LED pin  - GPS Lock			- GPS Lock
+	//pinMode(13,INPUT); 	//  PB5 - SCK		- Yellow LED pin   				- INPUT Throttle
+          pinMode(47,OUTPUT);
+          pinMode(48,OUTPUT);
+          //pinMode(49,OUTPUT);
+          
+        //digitalWrite(6,HIGH);
 	
 	// Enable GPS
 	// ----------------
@@ -101,13 +104,13 @@ void init_ardupilot()
 	// Makes the servos wiggle
 	// -----------------------
 	//demo_servos();
-
-	if(startup_check()){
+        startup_ground();
+	/*if(startup_check()){
 		Serial.println("Startup: Ground");
 		startup_ground();
 	}else{
 		Serial.println("Startup: AIR");
-	}
+	}*/
 }
 
 byte startup_check(void){
@@ -329,7 +332,7 @@ void set_failsafe(boolean mode)
 			
 			// Release hardware MUX
 			// ---------------------
-			set_servo_mux(false);
+			//set_servo_mux(false);
 			
 		}else{
 			// We've lost radio contact
@@ -340,7 +343,7 @@ void set_failsafe(boolean mode)
 			if(control_mode < AUTO){			
 				// Override hardware MUX
 				// ---------------------
-				set_servo_mux(true);
+				//set_servo_mux(true);
 			}
 		}
 		
@@ -368,6 +371,7 @@ void set_max_altitude_speed(void)
 
 // This hack is to control the V2 shield so we can read the serial from 
 // the XBEE radios - which is not implemented yet
+
 void setGPSMux(void)
 {
 	#if SHIELD_VERSION < 1
