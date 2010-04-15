@@ -132,7 +132,7 @@ void decode_gps(void)
 	}
 	
 	if((DIYmillis() - GPS_timer) > 2000){
-		digitalWrite(49, LOW);	//If we don't receive any byte in two seconds turn off gps fix LED... 
+		digitalWrite(47, LOW);	//If we don't receive any byte in two seconds turn off gps fix LED... 
 		if(GPS_fix != FAILED_GPS){
 			GPS_fix = BAD_GPS;
 		}
@@ -195,7 +195,7 @@ void GPS_join_data()
 			if((UBX_buffer[10] >= 0x03) && (UBX_buffer[11] & 0x01)){
 				GPS_fix = VALID_GPS; //valid position
 				print_telemetry = true;
-				digitalWrite(49,HIGH);
+				digitalWrite(49,HIGH);  //change to
 			}else{
 				GPS_fix = BAD_GPS; //invalid position
 				digitalWrite(49,LOW);

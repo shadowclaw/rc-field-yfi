@@ -369,7 +369,7 @@ LED_ON();
 
 RC_MUX_PORT_OUT_REG &= (~(1<<RC_MUX_PIN));
 RC_MUX_PORT_DDR_REG |= (1<<RC_MUX_PIN);
-MUX_ON();
+MUX_OFF(); //might change intial setup value for mux
 
 // make the setup pin an input and activate the pull up resistor on the setup pin.
 RC_SETUP_DDR_REG &= (~(1<<RC_SETUP_PIN));

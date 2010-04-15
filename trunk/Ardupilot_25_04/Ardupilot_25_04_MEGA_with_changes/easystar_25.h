@@ -14,14 +14,13 @@
 //#define POSITION_2 FLY_BY_WIRE
 //#define POSITION_3 FLY_BY_WIRE
 #define POSITION_2 AUTO
-#define POSITION_3 AUTO
 // Try and run FLY_BY_WIRE to verify you have good gains set up correctly 
 // before you try Autopilot and wreck your plane. I'll sleep better that way...
 	
 
 // Airframe settings
 //1-1
-#define GPS_PROTOCOL 2 // 0 = NMEA, 1=SIRF, 2=uBlox, 3 = IMU, 5 = Simulated GPS mode (Debug)
+#define GPS_PROTOCOL 2 // 2=uBlox, 1 = IMU
 //1-2
 #define REVERSE_ROLL -1 //To reverse servo roll, PUT -1 to invert it!!!
 //1-3

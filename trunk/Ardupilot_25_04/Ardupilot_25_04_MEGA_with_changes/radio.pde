@@ -16,6 +16,7 @@ boolean ch2_read = 0;
 
 void read_radio()
 {
+        /*
 	//Filter Radio input
 	if(timer1diff > 1700 && timer1diff < 4000){
 		
@@ -35,7 +36,11 @@ void read_radio()
 		#else
 			ch3_in = (float)ch3_in *.9  + (3000 - (float)timer3diff *.05);
 		#endif
-	}
+	}*/
+
+        ch1_temp = InputCh(0);
+        ch2_temp = InputCh(1);
+        ch3_in = Inputch(2);
   
 	#if MIXING_MODE == 0
 		ch1_in = ch1_temp;
@@ -51,9 +56,9 @@ void read_radio()
 		servo_throttle = (ch3_in - ch3_trim) *.125;
 		servo_throttle = constrain(servo_throttle, 0, 125);
 	#endif
-
+        
 }
-
+/*
 #if RADIO_TYPE == 0
 ISR(PCINT2_vect) {
 	int cnt = TCNT1;
@@ -147,7 +152,7 @@ ISR(PCINT0_vect) {
 		  timer3diff = (cnt - timer1count);
 	}
 }
-#endif
+#endif*/
 
 void throttle_failsafe()
 {

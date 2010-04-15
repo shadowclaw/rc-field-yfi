@@ -269,14 +269,14 @@ void loop()
 		if(GPS_fix != VALID_GPS){
 			GPS_light = !GPS_light;
 			if(GPS_light){
-				digitalWrite(49, HIGH);	
+				digitalWrite(47, HIGH);	
 			}else{
-				digitalWrite(49, LOW);	
+				digitalWrite(47, LOW);	
 			}		
 		}else{
 			if(!GPS_light){
 				GPS_light = true;
-				digitalWrite(49, HIGH);
+				digitalWrite(47, HIGH);
 			}
 		}
 
