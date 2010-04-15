@@ -31,22 +31,10 @@ void reset_control_switch()
 }
 
 byte readSwitch(void){
-	if(digitalRead(4) == HIGH){
-		if(digitalRead(5) == HIGH){
-
-			// Middle Switch Position
-			// ----------------------
-			return 2;
-
-		}else{
-			// 3rd Switch Position
-			// -------------------
-			return 3;
-		}
+	if(InputCh(7) >= 1250){
+	  return 2;
 	}else{
-		// 1st Switch Position
-		// ----------------------
-		return 1;
+	  return 1;
 	}
 }
 

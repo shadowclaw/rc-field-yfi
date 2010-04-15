@@ -1,4 +1,4 @@
-#if GPS_PROTOCOL == 3
+#if GPS_PROTOCOL == 1
 	// Performance Monitoring variables
 	// Data collected and reported for ~1 minute intervals
 	//int IMU_mainLoop_count = 0;				//Main loop cycles since last report

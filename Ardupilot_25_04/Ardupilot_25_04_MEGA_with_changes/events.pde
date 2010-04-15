@@ -36,12 +36,7 @@ void switch_event(byte switchPosition)
 		break;
 
 		case 2: // middle position
-		//set_mode(RTL);
 		set_mode(POSITION_2);
-		break;
-
-		case 3: // last position
-		set_mode(POSITION_3);
 		break;
 	}
 }

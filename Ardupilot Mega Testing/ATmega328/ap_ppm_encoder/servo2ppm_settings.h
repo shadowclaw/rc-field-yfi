@@ -92,7 +92,7 @@ Valid only if RC_LOST_CHANNEL > 0
 
 
 #define RC_MUX_CHANNEL                8     /*Jordi: Channel that will control the MUX */
-#define RC_MUX_REVERSE                0     /*Jordi: Inverted the MUX output (NOT), 0 = normal, 1 = Rev*/
+#define RC_MUX_REVERSE                1     /*Jordi: Inverted the MUX output (NOT), 0 = normal, 1 = Rev*/
 #define RC_MUX_MIN                    0  /*Jordi: the min point */
 #define RC_MUX_MAX                    1250  /*Jordi: the max point */
 
