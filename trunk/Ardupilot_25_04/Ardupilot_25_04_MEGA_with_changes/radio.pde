@@ -40,7 +40,7 @@ void read_radio()
 
         ch1_temp = InputCh(0);
         ch2_temp = InputCh(1);
-        ch3_in = Inputch(2);
+        ch3_in = InputCh(2);
   
 	#if MIXING_MODE == 0
 		ch1_in = ch1_temp;
