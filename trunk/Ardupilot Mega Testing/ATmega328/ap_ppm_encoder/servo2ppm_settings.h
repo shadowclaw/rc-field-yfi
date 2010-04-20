@@ -57,7 +57,7 @@ RC_USE_FAILSAFE set to 0 means that the ppm output will be shut down and if you 
 RC_USE_FAILSAFE  to 1 the ppm output will NOT shut down but it will now output the failsafe values
 defined above. 
 */
-#define RC_USE_FAILSAFE               1
+#define RC_USE_FAILSAFE               0
 
 /*
 The channel number (1,2,3...7,8) that will be used as a receiver ready indicator.

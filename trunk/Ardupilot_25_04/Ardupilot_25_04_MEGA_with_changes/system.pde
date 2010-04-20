@@ -43,7 +43,7 @@ void init_ardupilot()
 	//pinMode(4,INPUT);	// PD4 - XCK/T0 	- MUX pin							- Connected to Pin 2 on ATtiny
 	//pinMode(5,INPUT);	// PD5 - T0		- Mode pin							- Connected to Pin 6 on ATtiny   - Select on MUX
 	//pinMode(6,INPUT);	// PD6 - T1		- Ground start signaling Pin	
-	pinMode(7,OUTPUT);	// PD7 - AIN0		- GPS Mux pin 
+	//pinMode(7,OUTPUT);	// PD7 - AIN0		- GPS Mux pin 
 	// PORTB
 	//pinMode(8,OUTPUT); 	// PB0 - AIN1		- Servo throttle					- OUTPUT THROTTLE
 	// PB1 - OC1A		- Elevator PWM out					- Elevator PWM out
@@ -59,7 +59,7 @@ void init_ardupilot()
 	
 	// Enable GPS
 	// ----------------
-	setGPSMux();
+	//setGPSMux();
 
 	// setup control switch
 	// ----------------
@@ -115,7 +115,7 @@ void init_ardupilot()
 
 byte startup_check(void){
 	#if THROTTLE_IN	== 1	
-		if ((readSwitch() == 1) && (ch3_in < 1150)){  // uncomment to use Manual switch position instead of a RBF pin
+		if ((readSwitch() == 1) && (InputCh(2) < 1150)){  // uncomment to use Manual switch position instead of a RBF pin
 			// we are in manual
 			return 1;
 		}else{
@@ -281,7 +281,7 @@ void set_mode(byte mode)
 	
 	// reset throttle cruise for AP;
 	throttle_cruise = THROTTLE_CRUISE;
-	setGPSMux();
+	//setGPSMux();
 	
 	switch(control_mode)
 	{
@@ -372,6 +372,7 @@ void set_max_altitude_speed(void)
 // This hack is to control the V2 shield so we can read the serial from 
 // the XBEE radios - which is not implemented yet
 
+/*
 void setGPSMux(void)
 {
 	#if SHIELD_VERSION < 1
@@ -390,7 +391,7 @@ void setCommandMux(void)
 	#endif
 }
 
-
+*/
 /* 
 ailerons
 EEPROM memory map

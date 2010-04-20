@@ -27,24 +27,7 @@ void setup()
 void loop()
 {
   
-   //Switch low, forward the PPM
-   if(InputCh(7) <= 1250)
-   {
-     OutputCh(0, InputCh(0));
-     //OutputCh(0, 1250);
-     OutputCh(1, InputCh(1));
-     OutputCh(2, InputCh(2));
-     OutputCh(3, InputCh(3));
-     OutputCh(4, InputCh(4));
-     OutputCh(5, InputCh(5));
-     OutputCh(6, InputCh(6));
-     OutputCh(7, InputCh(7));
-   }
-   else
-   {
-     //Switch High, Move servos
-     if(InputCh(7) >= 1750)
-     {
+     
          if((millis()- timer2) >= 20)
           {
             timer2=millis();
@@ -53,12 +36,7 @@ void loop()
             else
             All_PWM+=20;
           }
-     }
-     //Switch in the midle, center all servos
-     else
-     {
-        All_PWM=1500;  
-     } 
+     
      
      OutputCh(0, All_PWM);
      OutputCh(1, All_PWM);
@@ -68,7 +46,7 @@ void loop()
      OutputCh(5, All_PWM);
      OutputCh(6, All_PWM);
      OutputCh(7, All_PWM);     
-   }
+   
   
   //Printing all values. 
   if((millis()- timer) >= 250)

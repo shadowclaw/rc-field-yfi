@@ -202,6 +202,7 @@ void trim_radio()
 	// Warm up radio input filters
 	// ---------------------------
 	for(int c=0; c < 100; c++){
+  
 		delay(20);
 		read_radio();
 	}

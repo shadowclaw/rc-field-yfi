@@ -196,23 +196,25 @@ long actual_turn_rate		        = 0;
 void setup() {
         
         pinMode(47,OUTPUT); 
-        digitalWrite(47, HIGH);	
+        digitalWrite(47, HIGH);
         
+        Serial.begin(THIRTY_EIGHT_K_BAUD);	
+        /*
 	#if GPS_PROTOCOL == 0
-		Serial.begin(FIFTY_SEVEN_K_BAUD);
+		Serial1.begin(FIFTY_SEVEN_K_BAUD);
 	#endif
 	#if GPS_PROTOCOL == 1
-		Serial.begin(FIFTY_SEVEN_K_BAUD);
+		Serial1.begin(FIFTY_SEVEN_K_BAUD);
 	#endif
 	#if GPS_PROTOCOL == 2
-		Serial.begin(THIRTY_EIGHT_K_BAUD);
+		Serial1.begin(THIRTY_EIGHT_K_BAUD);
 	#endif
 	#if GPS_PROTOCOL == 3
-		Serial.begin(THIRTY_EIGHT_K_BAUD);
+		Serial1.begin(THIRTY_EIGHT_K_BAUD);
 	#endif
 	#if GPS_PROTOCOL == 5
-		Serial.begin(THIRTY_EIGHT_K_BAUD);
-	#endif
+		Serial1.begin(THIRTY_EIGHT_K_BAUD);
+	#endif*/
 	
 	init_ardupilot();
 }
@@ -300,7 +302,7 @@ void loop()
 			gps_event();
 		}
 		
-		
+		//print_position();
 		print_attitude();
 		//print_radio();
 		
