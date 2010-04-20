@@ -1,3 +1,4 @@
+//timers for ATMEGA 1280
 void OutputCh(byte ch, int pwm)
 {
   pwm=constrain(pwm,900,2100);

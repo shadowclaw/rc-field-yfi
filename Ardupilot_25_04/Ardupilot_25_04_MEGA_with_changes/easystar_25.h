@@ -44,7 +44,7 @@
 
 // IR sensors
 //2-1
-#define ENABLE_Z_SENSOR 0  // 0 = no Z sensor, 1 = use Z sensor (no Z requires field calibration with each flight)
+#define ENABLE_Z_SENSOR 1  // 0 = no Z sensor, 1 = use Z sensor (no Z requires field calibration with each flight)
 //2-2
 #define XY_SENSOR_LOCATION 0 	//XY Thermopiles Sensor placement
 //Mounted right side up: 		0 = cable in front, 1 = cable behind

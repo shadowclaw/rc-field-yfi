@@ -7,14 +7,14 @@ byte UBX_buffer[BUF_LEN];
 byte ck_a 					= 0;
 byte ck_b 					= 0;
 //long alt 					= 0; //Height above Ellipsoid 
-//long speed_3d 			= 0; //Speed (3 - D)	(not used)
-byte UBX_class				= 0;
+//long speed_3d 			        = 0; //Speed (3 - D)	(not used)
+byte UBX_class				        = 0;
 byte UBX_id					= 0;
-byte UBX_payload_length_hi	= 0;
-byte UBX_payload_length_lo	= 0;
-byte UBX_payload_counter	= 0;
-byte UBX_ck_a 				= 0;
-byte UBX_ck_b				= 0;
+byte UBX_payload_length_hi	                = 0;
+byte UBX_payload_length_lo	                = 0;
+byte UBX_payload_counter	                = 0;
+byte UBX_ck_a 				        = 0;
+byte UBX_ck_b				        = 0;
 byte numSV					= 0; //Number of Sats used. 
 long ground_course_temp		= 0; // degrees * 100 dir of plane
 
@@ -42,7 +42,7 @@ long ground_course_temp		= 0; // degrees * 100 dir of plane
 
 void init_gps(void)
 {
-	Serial.begin(THIRTY_EIGHT_K_BAUD); //Universal Sincronus Asyncronus Receiveing Transmiting 
+	Serial1.begin(THIRTY_EIGHT_K_BAUD); //Universal Sincronus Asyncronus Receiveing Transmiting 
 	
 	GPS_update 	= GPS_NONE;
 	GPS_fix 	= BAD_GPS;
@@ -55,11 +55,13 @@ void decode_gps(void)
 	byte data;
 	int numc;
 	
-	numc = Serial.available();
+	numc = Serial1.available();
+        //Serial.println(numc);
 	if (numc > 0){
 		delay(3); // added delay to help with servo hangs
 		for (int i=0; i<numc; i++){	// Process bytes received
-			data = Serial.read();
+			data = Serial1.read();
+                        //Serial.println(data);
 			switch(GPS_step){		 //Normally we start from zero. This is a state machine
 				case 0:	
 					if(data==0xB5)	// UBX sync char 1
@@ -195,10 +197,10 @@ void GPS_join_data()
 			if((UBX_buffer[10] >= 0x03) && (UBX_buffer[11] & 0x01)){
 				GPS_fix = VALID_GPS; //valid position
 				print_telemetry = true;
-				digitalWrite(49,HIGH);  //change to
+				digitalWrite(47,HIGH);  //change to
 			}else{
 				GPS_fix = BAD_GPS; //invalid position
-				digitalWrite(49,LOW);
+				digitalWrite(47,LOW);
 			}
 			//ecefVZ=(float)join_4_bytes(&UBX_buffer[36])/100; //Vertical Speed			
 			numSV = UBX_buffer[47]; //Number of sats... 
