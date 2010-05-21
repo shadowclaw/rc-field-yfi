@@ -4,8 +4,8 @@
 
 // Do not Change below this line
 // -----------------------------
-#define FIFTY_SEVEN_K_BAUD 57600
-#define THIRTY_EIGHT_K_BAUD 115200
+#define GPS_BAUD 115200
+#define SERIAL_BAUD 115200
 #define WP_10_BYTES 10
 
 // PID cases

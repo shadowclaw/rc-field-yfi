@@ -26,101 +26,96 @@ const float t7				= 10000000.0;	// used to scale GPS values for EEPROM storage
 
 
 /***************************************************************************
- uBlox Variables
+ * uBlox Variables
  **************************************************************************/
 #if GPS_PROTOCOL == 2
-	byte UBX_buffer[40];
+byte UBX_buffer[40];
 
-	//uBlox Checksum
-	byte ck_a 					= 0;
-	byte ck_b 					= 0;
-	long iTOW 					= 0; //GPS Millisecond Time of Week
-	//long alt 					= 0; //Height above Ellipsoid 
-	//long speed_3d 			= 0; //Speed (3 - D)	(not used)
-	byte UBX_class				= 0;
-	byte UBX_id					= 0;
-	byte UBX_payload_length_hi	= 0;
-	byte UBX_payload_length_lo	= 0;
-	byte UBX_payload_counter	= 0;
-	byte UBX_ck_a 				= 0;
-	byte UBX_ck_b				= 0;
+//uBlox Checksum
+byte ck_a 					= 0;
+byte ck_b 					= 0;
+long iTOW 					= 0; //GPS Millisecond Time of Week
+//long alt 					= 0; //Height above Ellipsoid 
+//long speed_3d 			= 0; //Speed (3 - D)	(not used)
+byte UBX_class				= 0;
+byte UBX_id					= 0;
+byte UBX_payload_length_hi	= 0;
+byte UBX_payload_length_lo	= 0;
+byte UBX_payload_counter	= 0;
+byte UBX_ck_a 				= 0;
+byte UBX_ck_b				= 0;
 #endif
 
 // used to consruct the GPS data from Bytes to ints and longs
 // ----------------------------------------------------------
 union long_union {
-	int32_t dword;
-	uint8_t	byte[4];
-} longUnion;
+  int32_t dword;
+  uint8_t	byte[4];
+} 
+longUnion;
 
 union int_union {
-	int16_t word;
-	uint8_t	byte[2];
-} intUnion;
+  int16_t word;
+  uint8_t	byte[2];
+} 
+intUnion;
 
 // 3D Location vectors
 // -------------------
 struct Location {
-	long lat;
-	long lng;
-	long alt;
+  long lat;
+  long lng;
+  long alt;
 };
 
-struct Location current_loc 		= {0,0,0};		// current location
+struct Location current_loc 		= {
+  0,0,0};		// current location
 
 // Basic Initialization
 //---------------------
-void setup() {
-	pinMode(7,OUTPUT);	// PD7 - AIN0		- Remove Before Fly input pin		- 
-
-	#if SHIELD_VERSION == 0 // v1 Shield
-	digitalWrite(7, LOW);
-	#endif
-	
-	#if SHIELD_VERSION == 1 
-	// v2 Shield
-	digitalWrite(7, HIGH);
-	#endif
-
-	Serial.begin(57600);
-	init_gps();
+void setup() 
+{
+  Serial.begin(57600);
+  Serial1.begin(115200);
+  init_gps();
 }
 
 
 void loop()
 {
-	// system Timers
-	// ----------------------------------------
-	deltaMiliSeconds 	= millis() - fast_loopTimer;
-	if (deltaMiliSeconds < 100) {
-		// force main loop to run at 50Hz
-		return;
-	}
-	fast_loopTimer			= millis();
+  // system Timers
+  // ----------------------------------------
+  deltaMiliSeconds 	= millis() - fast_loopTimer;
+  if (deltaMiliSeconds < 100) {
+    // force main loop to run at 50Hz
+    return;
+  }
+  fast_loopTimer			= millis();
 
-	// Read in the GPS position
-	// ------------------------
-	decode_gps();
-	Serial.print(".");
-	
-	if (GPS_update & GPS_POSITION){
-		Serial.println(" ");
-		GPS_update = GPS_NONE;
-		print_position();
-	}	
+  // Read in the GPS position
+  // ------------------------
+  decode_gps();
+  Serial.print(".");
+
+  if (GPS_update & GPS_POSITION){
+    Serial.println(" ");
+    GPS_update = GPS_NONE;
+    print_position();
+  }	
 }
 
 
 void print_position(void)
 {
-	//!!377659260|-1224329073|5543|79|-56|5543|0|7982
-	Serial.print("lat/lng * 10^7:");
-	Serial.print(current_loc.lat,DEC);
-	Serial.print(", ");
-	Serial.print(current_loc.lng,DEC);
-	Serial.print(", alt: ");
-	Serial.print(current_loc.alt/100,DEC);
-	Serial.print("m, gs: ");
-	Serial.print(ground_speed/100,DEC);
-	Serial.println("m/s");
+  //!!377659260|-1224329073|5543|79|-56|5543|0|7982
+  Serial.print("lat/lng * 10^7:");
+  Serial.print(current_loc.lat,DEC);
+  Serial.print(", ");
+  Serial.print(current_loc.lng,DEC);
+  Serial.print(", alt: ");
+  Serial.print(current_loc.alt/100,DEC);
+  Serial.print("m, gs: ");
+  Serial.print(ground_speed/100,DEC);
+  Serial.println("m/s");
 }
+

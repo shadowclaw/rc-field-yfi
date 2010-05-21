@@ -93,7 +93,7 @@
 //4-5
 #define LOITER_RADIUS 45 // radius in meters of a Loiter
 //4-6
-#define REMEMBER_LAST_WAYPOINT_MODE 1 //If set 1 = will remember the last waypoint even if you restart the autopilot. 0 = Will start from zero everytime you restart the system. 
+#define REMEMBER_LAST_WAYPOINT_MODE 0 //If set 1 = will remember the last waypoint even if you restart the autopilot. 0 = Will start from zero everytime you restart the system. 
 
 
 //NAVIGATION: ALTITUDE

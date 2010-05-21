@@ -14,7 +14,7 @@ void demo_servos()
 	OCR1B = 1500 * 2;*/
         OutputCh(0,1600);    //  0 = Rudder
         OutputCh(1,1600);    //  1 = Elevator
-        OutputCh(2,1200);       //  2 = Throttle
+        OutputCh(2,900);       //  2 = Throttle
         delay(400);
         OutputCh(0,1400);
         OutputCh(1,1400);
@@ -76,8 +76,6 @@ void set_ch1_degrees(float deg){
 	// 			1520 + 3500 *.11111f = 1520 + 388.885 = right turn;
 	ch1_out = ch1_trim + ((float)REVERSE_ROLL * deg * .11111f);
 	ch1_out = constrain(ch1_out, 	ch1_min, 	ch1_max);
-	ch1_out = constrain(ch1_out, 	1000, 	2000);
-	//OCR1A = ch1_out * 2;	//OCR1A is the channel 1 pulse width in half microseconds
         OutputCh(0,ch1_out);
 }
 
@@ -85,8 +83,6 @@ void set_ch1_degrees(float deg){
 void set_ch1_degrees_mix(float deg){
 	ch1_out = ch1_in + ((float)REVERSE_ROLL * deg * .11111f);
 	ch1_out = constrain(ch1_out, 	ch1_min, 	ch1_max);
-	ch1_out = constrain(ch1_out, 	1000, 	2000);
-	//OCR1A = ch1_out * 2;
         OutputCh(0,ch1_out);
 }
 
@@ -94,8 +90,6 @@ void set_ch1_degrees_mix(float deg){
 void set_ch2_degrees(float deg){
 	ch2_out = ch2_trim + ((float)REVERSE_PITCH * deg * .11111f);
 	ch2_out = constrain(ch2_out, 	ch2_min, 	ch2_max);
-	ch2_out = constrain(ch2_out, 	1000, 	2000);
-	//OCR1B = ch2_out * 2;
         OutputCh(1,ch2_out);
 }
 
@@ -103,8 +97,6 @@ void set_ch2_degrees(float deg){
 void set_ch2_degrees_mix(float deg){
 	ch2_out = ch2_in + ((float)REVERSE_PITCH * deg * .11111f);
 	ch2_out = constrain(ch2_out, 	ch2_min, 	ch2_max);
-	ch2_out = constrain(ch2_out, 	1000, 	2000);
-	//OCR1B = ch2_out * 2;
         OutputCh(1,ch2_out);
 }
 
@@ -124,7 +116,7 @@ void update_throttle()
 #if REVERSE_THROTTLE == 0
 	int temp = servo_throttle + 125 + ch3_timer_trim;
 	temp = constrain(temp, 120, 250);
-	//OCR2A = temp;
+	temp = temp * 8;
         OutputCh(2,temp);
 #endif
 
@@ -133,7 +125,7 @@ void update_throttle()
 	//int temp = 250 - servo_throttle + ch3_timer_trim;
 	int temp = 125 + (125 - servo_throttle) + ch3_timer_trim;
 	temp = constrain(temp, 120, 250);
-	//OCR2A = temp;
+	temp = temp * 8;
         OutputCh(2,temp);
 #endif
 

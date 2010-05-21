@@ -198,23 +198,7 @@ void setup() {
         pinMode(47,OUTPUT); 
         digitalWrite(47, HIGH);
         
-        Serial.begin(THIRTY_EIGHT_K_BAUD);	
-        /*
-	#if GPS_PROTOCOL == 0
-		Serial1.begin(FIFTY_SEVEN_K_BAUD);
-	#endif
-	#if GPS_PROTOCOL == 1
-		Serial1.begin(FIFTY_SEVEN_K_BAUD);
-	#endif
-	#if GPS_PROTOCOL == 2
-		Serial1.begin(THIRTY_EIGHT_K_BAUD);
-	#endif
-	#if GPS_PROTOCOL == 3
-		Serial1.begin(THIRTY_EIGHT_K_BAUD);
-	#endif
-	#if GPS_PROTOCOL == 5
-		Serial1.begin(THIRTY_EIGHT_K_BAUD);
-	#endif*/
+        Serial.begin(SERIAL_BAUD);
 	
 	init_ardupilot();
 }
@@ -340,10 +324,6 @@ void loop()
 		stabilize_AP();
 
 	}else if (control_mode >= AUTO){
-
-		#if GPS_PROTOCOL == 5
-			navigate_sim();
-		#endif
 		
 		// Navigation Control Loop
 		// -----------------------
