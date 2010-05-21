@@ -42,7 +42,7 @@ long ground_course_temp		= 0; // degrees * 100 dir of plane
 
 void init_gps(void)
 {
-	Serial1.begin(THIRTY_EIGHT_K_BAUD); //Universal Sincronus Asyncronus Receiveing Transmiting 
+	Serial1.begin(GPS_BAUD); //Universal Sincronus Asyncronus Receiveing Transmiting 
 	
 	GPS_update 	= GPS_NONE;
 	GPS_fix 	= BAD_GPS;

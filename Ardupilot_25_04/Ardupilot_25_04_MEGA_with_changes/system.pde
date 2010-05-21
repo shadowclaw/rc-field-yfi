@@ -122,7 +122,7 @@ byte startup_check(void){
 			return 0;
 		}
 	#else
-		if(digitalRead(6) == LOW){
+		if(digitalRead(48) == LOW){
 			return 1;
 		}else{
 			return 0;

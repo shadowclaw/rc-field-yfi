@@ -24,14 +24,12 @@
 void init_gps(void)
 {
 	pinMode(12, OUTPUT);//Status led
-	Serial.begin(57600); //Universal Sincronus Asyncronus Receiveing Transmiting 
 	wait_for_GPS_fix();
 }
 
 void fast_init_gps(void)
 {
 	pinMode(12, OUTPUT);//Status led
-	Serial.begin(57600); //Universal Sincronus Asyncronus Receiveing Transmiting 
 }
 
 /****************************************************************
@@ -44,13 +42,13 @@ void decode_gps(void)
 	byte data;
 	int numc;
 	
-	numc = Serial.available();
+	numc = Serial1.available();
         Serial.print("decode gps available=");
         Serial.println(numc,DEC);
 	if (numc > 0){
 		delay(3); // added delay to help with servo hangs
 		for (int i=0; i<numc; i++){	// Process bytes received
-			data = Serial.read();
+			data = Serial1.read();
                         Serial.print(data);
 			switch(GPS_step){		 //Normally we start from zero. This is a state machine
 				case 0:	
@@ -168,10 +166,10 @@ void GPS_join_data()
 			
 			if(UBX_buffer[4] >= 0x03){
 				GPS_fix = VALID_GPS; //valid position
-				digitalWrite(12,HIGH);
+				//digitalWrite(12,HIGH);
 			} else {
 				GPS_fix = BAD_GPS; //invalid position
-				digitalWrite(12,LOW);
+				//digitalWrite(12,LOW);
 			}
 			break;
 
@@ -224,9 +222,9 @@ void wait_for_GPS_fix(void)//Wait GPS fix...
 	do{
 		for(int c=0; c<=20; c++){
 			decode_gps();
-			digitalWrite(12,LOW);
+			//digitalWrite(12,LOW);
 			delay(25);
-			digitalWrite(12,HIGH);
+			//digitalWrite(12,HIGH);
 			delay(25);
 		}
 		if(GPS_fix == BAD_GPS){
