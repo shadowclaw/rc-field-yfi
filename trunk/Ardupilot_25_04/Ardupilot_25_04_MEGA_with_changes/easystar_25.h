@@ -13,7 +13,8 @@
 #define POSITION_1 MANUAL 
 //#define POSITION_2 FLY_BY_WIRE
 //#define POSITION_3 FLY_BY_WIRE
-#define POSITION_2 AUTO
+#define POSITION_2 STABILIZE
+#define POSITION_3 STABILIZE
 // Try and run FLY_BY_WIRE to verify you have good gains set up correctly 
 // before you try Autopilot and wreck your plane. I'll sleep better that way...
 	
@@ -129,7 +130,7 @@
 
 //ATTITUDE: Rudder gains / Aileron gains
 //7-1
-#define RUDDER_P .40 // 	START WITH THIS VALUE TO TUNE - overall proportional term determines how much rudder you use to turn.
+#define RUDDER_P 1.0 //.40 // 	START WITH THIS VALUE TO TUNE - overall proportional term determines how much rudder you use to turn.
 //7-2	
 #define RUDDER_I 0.0 //	Roll PID integrator
 //7-3
@@ -138,7 +139,7 @@
 
 //ATTITUDE: Elevator gains
 //8-1
-#define ELEVATOR_P .35 //	Pitch Proportional- overall proportional term determines how much elevator you use to correct pitch
+#define ELEVATOR_P 1.0 //.35 //	Pitch Proportional- overall proportional term determines how much elevator you use to correct pitch
 //8-2
 #define ELEVATOR_I 0 //	Pitch PID integrator
 //8-3
